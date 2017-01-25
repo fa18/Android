@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Liste de courses</string>
+    <string name="hello">Hello world!</string>
+    <string name="button_liste_magasin">Liste de magasins</string>
+    <string name="button_Liste_de_produits">Liste de produits</string>
+    <string name="Button_Listes_de_courses">Listes de courses</string>
+    <string name="title_activity_magasins">Magasins</string>
+</resources>
