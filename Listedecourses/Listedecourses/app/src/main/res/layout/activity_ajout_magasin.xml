@@ -10,34 +10,33 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.fabienfontaine.listedecourses.AjoutMagasin">
 
-    <TextView
-        android:text="Ajouter un magasin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="66dp"
-        android:id="@+id/ajoutMagasin"
-        android:layout_marginTop="50dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
-
     <Button
         android:text="Valider l'ajout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="81dp"
         android:id="@+id/validerAjoutMagasin"
-        android:layout_below="@+id/editText"
-        android:layout_alignEnd="@+id/ajoutMagasin" />
+        android:layout_below="@+id/champ"
+
+        android:onClick="onValiderAjoutMagasin" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="saisir :"
         android:ems="10"
         android:layout_marginTop="69dp"
-        android:id="@+id/editText"
-        android:layout_below="@+id/ajoutMagasin"
+        android:id="@+id/champ"
+
         android:layout_alignStart="@+id/validerAjoutMagasin" />
+
+    <TextView
+        android:text="Veuillez saisir le nouveau magasin à ajouter : "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ajoutMagasin"
+        android:layout_marginBottom="41dp"
+        android:layout_above="@+id/validerAjoutMagasin"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

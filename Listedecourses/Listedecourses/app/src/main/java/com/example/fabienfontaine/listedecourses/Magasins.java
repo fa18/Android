@@ -33,7 +33,7 @@ public class Magasins extends AppCompatActivity {
         switch(requestCode) {
             case 90:
                 if (resultCode == RESULT_OK) {
-                    String res = data.getStringExtra("");
+                    String res = data.getStringExtra("NOM_MAGASIN");
 
                     Toast t = Toast.makeText(this, res, Toast.LENGTH_SHORT);
                     t.setGravity(Gravity.CENTER,0,-100);
