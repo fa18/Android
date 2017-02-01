@@ -4,6 +4,11 @@ import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.widget.Toast;
+import android.support.v7.widget.Toolbar;
+import android.support.design.widget.FloatingActionButton;
+import android.view.View;
 
 public class AjoutMagasin extends AppCompatActivity {
 
@@ -11,12 +16,7 @@ public class AjoutMagasin extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ajout_magasin);
+
     }
 
-    protected void onActivityResult(int requestCode, int resultCode, Intent data){
-        Intent retour = new Intent();
-        //retour.putExtra(data.getStringExtra(clé), champ.getText().toString());
-        setResult(Activity.RESULT_OK, retour);
-        finish();
-    }
 }

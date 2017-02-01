@@ -40,13 +40,4 @@
         android:layout_below="@+id/ajoutMagasin"
         android:layout_alignStart="@+id/validerAjoutMagasin" />
 
-    <SurfaceView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/editText"
-        android:layout_alignStart="@+id/editText"
-        android:id="@+id/surfaceView"
-        android:layout_above="@+id/validerAjoutMagasin"
-        android:layout_alignEnd="@+id/editText" />
-
 </RelativeLayout>
