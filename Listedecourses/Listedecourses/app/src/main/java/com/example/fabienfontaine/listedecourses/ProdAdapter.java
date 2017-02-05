@@ -29,6 +29,7 @@ public class ProdAdapter extends ArrayAdapter<Prods> {
         TweetViewHolder viewHolder = (TweetViewHolder) convertView.getTag();
         if(viewHolder == null){
             viewHolder = new TweetViewHolder();
+            viewHolder.nom = (TextView) convertView.findViewById(R.id.nom);
             viewHolder.emplacement = (TextView) convertView.findViewById(R.id.emplacement);
             viewHolder.description = (TextView) convertView.findViewById(R.id.description);
             viewHolder.photo= (ImageView) convertView.findViewById(R.id.photo);
@@ -39,6 +40,7 @@ public class ProdAdapter extends ArrayAdapter<Prods> {
         Prods prod = getItem(position);
 
         //il ne reste plus qu'à remplir notre vue
+        viewHolder.nom.setText(prod.getNom());
         viewHolder.emplacement.setText(prod.getEmplacement());
         viewHolder.description.setText(prod.getDescription());
         viewHolder.photo.setImageDrawable(new ColorDrawable(prod.getColor()));
@@ -50,5 +52,6 @@ public class ProdAdapter extends ArrayAdapter<Prods> {
         public TextView emplacement;
         public TextView description;
         public ImageView photo;
+        public TextView nom;
     }
 }

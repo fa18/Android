@@ -5,12 +5,20 @@ public class Prods {
     private int color;
     private String emplacement;
     private String description;
+    private String nom;
 
 
     Prods(int color, String emplacement, String description) {
         this.color = color;
         this.emplacement = emplacement;
         this.description = description;
+    }
+
+    Prods(String nom,int color, String emplacement, String description) {
+        this.color = color;
+        this.emplacement = emplacement;
+        this.description = description;
+        this.nom=nom;
     }
 
     public int getColor() {
@@ -35,5 +43,13 @@ public class Prods {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 }
