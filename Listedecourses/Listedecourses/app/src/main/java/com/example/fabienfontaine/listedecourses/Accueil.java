@@ -18,6 +18,7 @@ public class Accueil extends AppCompatActivity {
     }
 
     public void onProduits(View view) {
+        startActivity(new Intent(this, Produits.class));
     }
 
     public void onCourses(View view) {

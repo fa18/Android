@@ -24,7 +24,16 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.fabienfontaine.listedecourses.Accueil" />
         </activity>
-        <activity android:name=".AjoutMagasin"></activity>
+        <activity android:name=".AjoutMagasin" />
+        <activity
+            android:name=".Produits"
+            android:label="@string/title_activity_produits"
+            android:parentActivityName=".Accueil"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.fabienfontaine.listedecourses.Accueil" />
+        </activity>
     </application>
 
 </manifest>
