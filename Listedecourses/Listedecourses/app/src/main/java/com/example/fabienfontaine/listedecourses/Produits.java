@@ -1,72 +1,28 @@
 package com.example.fabienfontaine.listedecourses;
 
+import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+//Main
 public class Produits extends AppCompatActivity {
-    private String categorie;
-    private int quantite;
-    private String nom;
-    private String codeBarre;
-    private int promotion;
-    private String enplacement;
 
-    public String getCategorie() {
-        return categorie;
-    }
+    ListView mListView;
 
-    public void setCategorie(String categorie) {
-        this.categorie = categorie;
-    }
-
-    public int getQuantite() {
-        return quantite;
-    }
-
-    public void setQuantite(int quantite) {
-        this.quantite = quantite;
-    }
-
-    public String getNom() {
-        return nom;
-    }
-
-    public String getCodeBarre() {
-        return codeBarre;
-    }
-
-    public void setCodeBarre(String codeBarre) {
-        this.codeBarre = codeBarre;
-    }
-
-    public int getPromotion() {
-        return promotion;
-    }
-
-    public void setPromotion(int promotion) {
-        this.promotion = promotion;
-    }
-
-    public String getEnplacement() {
-        return enplacement;
-    }
-
-    public void setEnplacement(String enplacement) {
-        this.enplacement = enplacement;
-    }
-    
-    public Produits(String categorie, int quantite, String nom, String codeBarre, int promotion, String enplacement) {
-        this.categorie = categorie;
-        this.quantite = quantite;
-        this.nom = nom;
-        this.codeBarre = codeBarre;
-        this.promotion = promotion;
-        this.enplacement = enplacement;
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,7 +40,28 @@ public class Produits extends AppCompatActivity {
             }
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        mListView = (ListView) findViewById(R.id.listView);
+        List<Prods> tweets = genererProds();
+
+        ProdAdapter adapter = new ProdAdapter(Produits.this, tweets);
+
+
+        mListView.setAdapter(adapter);
+
+    }
+
+    private List<Prods> genererProds(){
+        List<Prods> prods = new ArrayList<Prods>();
+        prods.add(new Prods("Tagliatelle",Color.YELLOW, "Rayon féculent", "Pattes italienne "));
+        prods.add(new Prods("Steak haché",Color.RED, "Rayon Boucherie", "steak 100% pur boeuf origine france"));
+        prods.add(new Prods("Activia",Color.GRAY, "Rayon frais", "0% de matières grasses"));
+        return prods;
     }
 
 
+
+
+
 }
+
