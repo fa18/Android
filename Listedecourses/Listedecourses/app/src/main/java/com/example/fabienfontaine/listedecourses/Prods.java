@@ -6,20 +6,36 @@ public class Prods {
     private String emplacement;
     private String description;
     private String nom;
+    private String prix;
+    private String codeBarre;
+    private String magasin;
+    private String quantite;
+    private String promotion;
 
-
-    Prods(int color, String emplacement, String description) {
+    public Prods(int color,String nom,String description,String prix, String magasin,  String emplacement,   String codeBarre,  String quantite, String promotion) {
+        this.description = description;
         this.color = color;
         this.emplacement = emplacement;
-        this.description = description;
+        this.nom = nom;
+        this.prix = prix +" €";
+        this.codeBarre = codeBarre;
+        this.magasin = magasin;
+        this.quantite = quantite;
+        this.promotion = promotion;
     }
 
-    Prods(String nom,int color, String emplacement, String description) {
+
+
+
+   Prods(String nom,int color, String emplacement, String description,String prix) {
         this.color = color;
         this.emplacement = emplacement;
         this.description = description;
         this.nom=nom;
+        this.prix=prix+" €";
     }
+
+
 
     public int getColor() {
         return color;
@@ -51,5 +67,46 @@ public class Prods {
 
     public void setNom(String nom) {
         this.nom = nom;
+    }
+
+
+    public String getPrix() {
+        return prix;
+    }
+
+    public void setPrix(String prix) {
+        this.prix = prix;
+    }
+
+    public String getCodeBarre() {
+        return codeBarre;
+    }
+
+    public void setCodeBarre(String codeBarre) {
+        this.codeBarre = codeBarre;
+    }
+
+    public String getMagasin() {
+        return magasin;
+    }
+
+    public void setMagasin(String magasin) {
+        this.magasin = magasin;
+    }
+
+    public String getQuantite() {
+        return quantite;
+    }
+
+    public void setQuantite(String quantite) {
+        this.quantite = quantite;
+    }
+
+    public String getPromotion() {
+        return promotion;
+    }
+
+    public void setPromotion(String promotion) {
+        this.promotion = promotion;
     }
 }

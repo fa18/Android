@@ -53,9 +53,11 @@ public class Produits extends AppCompatActivity {
 
     private List<Prods> genererProds(){
         List<Prods> prods = new ArrayList<Prods>();
-        prods.add(new Prods("Tagliatelle",Color.YELLOW, "Rayon féculent", "Pattes italienne "));
-        prods.add(new Prods("Steak haché",Color.RED, "Rayon Boucherie", "steak 100% pur boeuf origine france"));
-        prods.add(new Prods("Activia",Color.GRAY, "Rayon frais", "0% de matières grasses"));
+        prods.add(new Prods(Color.BLUE,"Pack d'eau","Eau de source naturelle", "3.3", "Carrefour","Rayon Eau", "| || ||| ||| |","35",""));
+        prods.add(new Prods("Baguette",Color.YELLOW, "Boulangerie", "Baguette tradition moulée","0.9"));
+        prods.add(new Prods("Tagliatelle",Color.YELLOW, "Rayon féculent", "Pattes italienne ","2"));
+        prods.add(new Prods("Steak",Color.RED, "Rayon Boucherie", "steak 100% pur boeuf origine france","2"));
+        prods.add(new Prods("Activia",Color.GREEN, "Rayon frais", "0% de matières grasses","1.5"));
         return prods;
     }
 

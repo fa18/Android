@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/photo"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         tools:background="#AAA"
         />
 
@@ -18,30 +18,98 @@
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/black"
         android:layout_marginLeft="10dp"
-        android:layout_toRightOf="@+id/photo"
-        android:layout_alignTop="@+id/photo"
-        android:textStyle="bold"
         android:id="@+id/nom"
-        />
+        android:layout_marginStart="16dp"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.WindowTitle"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/photo" />
 
     <TextView
         android:id="@+id/description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@android:color/black"
-        android:layout_alignLeft="@+id/nom"
-        android:layout_below="@+id/nom"
         tools:text="Description du produit"
-        />
+        android:layout_below="@+id/nom"
+        android:layout_alignStart="@+id/nom" />
+
+    <TextView
+        android:text="codeBarre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/codeBarre"
+        android:layout_below="@+id/photo"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="magasin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/magasin"
+        android:layout_above="@+id/emplacement"
+        android:layout_toEndOf="@+id/textView8" />
+
+    <TextView
+        android:text="Disponble chez : "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView8"
+        android:layout_alignBaseline="@+id/magasin"
+        android:layout_alignBottom="@+id/magasin"
+        android:layout_alignStart="@+id/description" />
+
+    <TextView
+        android:text="quantite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/quantite"
+        android:layout_above="@+id/promotion"
+        android:layout_toEndOf="@+id/description" />
 
     <TextView
         android:id="@+id/emplacement"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="Emplacement du produit"
-        android:layout_alignBottom="@+id/photo"
-        android:layout_alignStart="@+id/description" />
+        tools:text="Emplacement"
+        android:layout_alignBaseline="@+id/codeBarre"
+        android:layout_alignBottom="@+id/codeBarre"
+        android:layout_toEndOf="@+id/rayon" />
+
+    <TextView
+        android:text="Rayon : "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/rayon"
+        android:layout_below="@+id/textView8"
+        android:layout_alignStart="@+id/textView8" />
+
+    <TextView
+        android:text="Quantité disponible : "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView6"
+        android:layout_marginTop="11dp"
+        android:layout_below="@+id/emplacement"
+        android:layout_alignStart="@+id/rayon" />
+
+    <TextView
+        android:text="promotion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/promotion"
+        android:layout_below="@+id/textView6"
+        android:layout_alignStart="@+id/textView6" />
+
+    <TextView
+        android:id="@+id/prix"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+
+        tools:text="prix"
+        android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
+        android:layout_alignBottom="@+id/nom"
+        android:layout_toEndOf="@+id/magasin" />
 
 </RelativeLayout>

@@ -14,7 +14,7 @@ import java.util.List;
 //vue
 public class ProdAdapter extends ArrayAdapter<Prods> {
 
-    //tweets est la liste des models à afficher
+    //prods est la liste des models à afficher
     public ProdAdapter(Context context, List<Prods> prods) {
         super(context, 0, prods);
     }
@@ -33,10 +33,17 @@ public class ProdAdapter extends ArrayAdapter<Prods> {
             viewHolder.emplacement = (TextView) convertView.findViewById(R.id.emplacement);
             viewHolder.description = (TextView) convertView.findViewById(R.id.description);
             viewHolder.photo= (ImageView) convertView.findViewById(R.id.photo);
+            viewHolder.prix= (TextView) convertView.findViewById(R.id.prix);
+            viewHolder.codeBarre= (TextView) convertView.findViewById(R.id.codeBarre);
+            viewHolder.magasin= (TextView) convertView.findViewById(R.id.magasin);
+            viewHolder.quantite= (TextView) convertView.findViewById(R.id.quantite);
+            viewHolder.promotion= (TextView) convertView.findViewById(R.id.promotion);
+
+
             convertView.setTag(viewHolder);
         }
 
-        //getItem(position) va récupérer l'item [position] de la List<Tweet> tweets
+        //getItem(position) va récupérer l'item [position] de la List<Prods> prods
         Prods prod = getItem(position);
 
         //il ne reste plus qu'à remplir notre vue
@@ -44,6 +51,11 @@ public class ProdAdapter extends ArrayAdapter<Prods> {
         viewHolder.emplacement.setText(prod.getEmplacement());
         viewHolder.description.setText(prod.getDescription());
         viewHolder.photo.setImageDrawable(new ColorDrawable(prod.getColor()));
+        viewHolder.prix.setText(prod.getPrix());
+        viewHolder.codeBarre.setText(prod.getCodeBarre());
+        viewHolder.magasin.setText(prod.getMagasin());
+        viewHolder.quantite.setText(prod.getQuantite());
+        viewHolder.promotion.setText(prod.getPromotion());
 
         return convertView;
     }
@@ -53,5 +65,10 @@ public class ProdAdapter extends ArrayAdapter<Prods> {
         public TextView description;
         public ImageView photo;
         public TextView nom;
+        public TextView prix;
+        public TextView codeBarre;
+        public TextView magasin;
+        public TextView quantite;
+        public TextView promotion;
     }
 }
