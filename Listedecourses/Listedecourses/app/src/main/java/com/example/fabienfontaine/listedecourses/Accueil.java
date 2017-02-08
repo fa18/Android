@@ -86,9 +86,9 @@ public class Accueil extends AppCompatActivity
             startActivity(new Intent(this, Magasins.class));
         } else if (id == R.id.nav_Liste_produits) {
             startActivity(new Intent(this, Produits.class));
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_Liste_courses) {
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_historique) {
 
         } else if (id == R.id.nav_share) {
 
