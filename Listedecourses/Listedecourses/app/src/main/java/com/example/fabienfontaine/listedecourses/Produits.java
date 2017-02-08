@@ -42,9 +42,9 @@ public class Produits extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mListView = (ListView) findViewById(R.id.listView);
-        List<Prods> tweets = genererProds();
+        List<Prods> prods = genererProds();
 
-        ProdAdapter adapter = new ProdAdapter(Produits.this, tweets);
+        ProdAdapter adapter = new ProdAdapter(Produits.this, prods);
 
 
         mListView.setAdapter(adapter);

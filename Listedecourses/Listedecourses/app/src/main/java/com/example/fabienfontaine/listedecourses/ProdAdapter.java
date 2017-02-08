@@ -26,9 +26,9 @@ public class ProdAdapter extends ArrayAdapter<Prods> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.row_produit,parent, false);
         }
 
-        TweetViewHolder viewHolder = (TweetViewHolder) convertView.getTag();
+        ProdsViewHolder viewHolder = (ProdsViewHolder) convertView.getTag();
         if(viewHolder == null){
-            viewHolder = new TweetViewHolder();
+            viewHolder = new ProdsViewHolder();
             viewHolder.nom = (TextView) convertView.findViewById(R.id.nom);
             viewHolder.emplacement = (TextView) convertView.findViewById(R.id.emplacement);
             viewHolder.description = (TextView) convertView.findViewById(R.id.description);
@@ -60,7 +60,7 @@ public class ProdAdapter extends ArrayAdapter<Prods> {
         return convertView;
     }
 
-    private class TweetViewHolder{
+    private class ProdsViewHolder{
         public TextView emplacement;
         public TextView description;
         public ImageView photo;
