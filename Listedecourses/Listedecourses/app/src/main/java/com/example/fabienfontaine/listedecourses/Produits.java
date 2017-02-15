@@ -44,6 +44,9 @@ public class Produits extends AppCompatActivity {
         mListView = (ListView) findViewById(R.id.listView);
         List<Prods> prods = genererProds();
 
+        //Bdd obj = new Bdd(getBaseContext(),"listeCourse.db", null, 1);
+        //List<Prods> prods = obj.createProds();
+
         ProdAdapter adapter = new ProdAdapter(Produits.this, prods);
 
 
@@ -60,6 +63,7 @@ public class Produits extends AppCompatActivity {
         prods.add(new Prods("Activia",Color.GREEN, "Rayon frais", "0% de matières grasses","1.5"));
         return prods;
     }
+
 
 
 

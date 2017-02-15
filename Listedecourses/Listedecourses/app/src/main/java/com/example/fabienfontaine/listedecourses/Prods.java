@@ -16,6 +16,12 @@ public class Prods {
 
     }
 
+    public Prods(String nom, String description, String codeBarre) {
+        this.nom = nom;
+        this.description = description;
+        this.codeBarre = codeBarre;
+    }
+
     public Prods(String emplacement, String description, String nom, String prix, String codeBarre, String magasin, String quantite, String promotion) {
         this.emplacement = emplacement;
         this.description = description;

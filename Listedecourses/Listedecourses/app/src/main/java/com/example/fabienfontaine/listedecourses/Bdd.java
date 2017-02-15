@@ -41,6 +41,7 @@ public class Bdd extends SQLiteOpenHelper {
             + COL_CODE + "TEXT );";
 
         //Insertion Produit
+        final String Insert_Produit="INSERT INTO Produit (categorie,nom_produit,description_produit) VALUES('bricolage','marteau','pour enfoncer des clous')";
 
     //Table Vend
     private static final String TABLE_VEND = "Vendeur";
@@ -86,6 +87,8 @@ public class Bdd extends SQLiteOpenHelper {
         super(context, name, factory, version, errorHandler);
     }
 
+
+
     @Override
     public void onCreate(SQLiteDatabase db) {
         //on crée la table à partir de la requête écrite dans la variable CREATE_BDD
@@ -93,6 +96,7 @@ public class Bdd extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_MAGASIN);
         db.execSQL(CREATE_TABLE_VEND);
         db.execSQL(CREATE_TABLE_LISTE);
+        db.execSQL(Insert_Produit);
 
 
     }
@@ -111,7 +115,7 @@ public class Bdd extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         List<Prods> liste = new LinkedList<>();
 
-        Cursor res = db.query(TABLE_PRODUIT + " INNER JOIN "+ TABLE_VEND + " INNER JOIN "+ TABLE_MAGASIN, null, null, null, null, null, null); // select * from TABLE_PRODUITY;
+        Cursor res = db.query(TABLE_PRODUIT /*+ " INNER JOIN "+ TABLE_VEND + " INNER JOIN "+ TABLE_MAGASIN*/, null, null, null, null, null, null); // select * from TABLE_PRODUITY;
         //Cursor res1 = db.rawQuery(MY_QUERY, new String[]{});
         res.moveToFirst(); // haut de la liste de résultats
         while (! res.isAfterLast()) {// tant que pas fin
@@ -119,12 +123,12 @@ public class Bdd extends SQLiteOpenHelper {
             p.setNom(res.getString(2)); // 3° colonne : nom
             p.setDescription(res.getString(3)); // description
             p.setCodeBarre(res.getString(4)); //code
-            p.setPrix(res.getString(5)); //prix
+            /* p.setPrix(res.getString(5)); //prix
             p.setQuantite(res.getString(6)); //unite
             p.setEmplacement(res.getString(7)); //rayon
             p.setPromotion(res.getString(8)); //promotion
             p.setMagasin(res.getString(10)); //magasin
-
+        */
             liste.add(p);
             res.moveToNext();
         }
