@@ -16,8 +16,8 @@ import java.util.List;
 public class Bdd extends SQLiteOpenHelper {
 
     //Table Magasin
-    private static final String TABLE_MAGASIN = "Magasins";
-    private static final String COL_ID_MAGASIN = "_id";
+    private static final String TABLE_MAGASIN = "Magasin";
+    private static final String COL_ID_MAGASIN = "id_magasin";
     private static final String COL_NOM_MAGASIN = "nom";
 
 
@@ -26,7 +26,7 @@ public class Bdd extends SQLiteOpenHelper {
             + COL_NOM_MAGASIN + "TEXT );";
 
     //Table Produit
-    private static final String TABLE_PRODUIT = "Produits";
+    private static final String TABLE_PRODUIT = "Produit";
     private static final String COL_ID_PRODUIT = "id_produit";
     private static final String COL_CATEGORIE = "categorie";
     private static final String COL_NOM_PRODUIT = "nom_produit";
@@ -106,19 +106,30 @@ public class Bdd extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    //http://www.androidhive.info/2013/09/android-sqlite-database-with-multiple-tables/
+   // private final String MY_QUERY = "SELECT nom_produit, description_produit, code, prix, unite, rayon, promotion FROM Produit prod INNER JOIN Vendeur vend ON prod.id_produit=vend.id_produit INNER JOIN Magasin mag on mag.id_magasin=vend.id_magasin ";
     public List<Prods> createProds() {
         SQLiteDatabase db = this.getReadableDatabase();
         List<Prods> liste = new LinkedList<>();
 
-        Cursor res = db.query(TABLE_PRODUIT, null, null, null, null, null, null); // select * from TABLE_PRODUITY;
+        Cursor res = db.query(TABLE_PRODUIT + " INNER JOIN "+ TABLE_VEND + " INNER JOIN "+ TABLE_MAGASIN, null, null, null, null, null, null); // select * from TABLE_PRODUITY;
+        //Cursor res1 = db.rawQuery(MY_QUERY, new String[]{});
         res.moveToFirst(); // haut de la liste de résultats
         while (! res.isAfterLast()) {// tant que pas fin
             Prods p = new Prods();
-            p.setNom(res.getString(2)); // 3° colonne
+            p.setNom(res.getString(2)); // 3° colonne : nom
+            p.setDescription(res.getString(3)); // description
+            p.setCodeBarre(res.getString(4)); //code
+            p.setPrix(res.getString(5)); //prix
+            p.setQuantite(res.getString(6)); //unite
+            p.setEmplacement(res.getString(7)); //rayon
+            p.setPromotion(res.getString(8)); //promotion
+            p.setMagasin(res.getString(10)); //magasin
+
             liste.add(p);
             res.moveToNext();
         }
+
+
         return liste;
     }
 

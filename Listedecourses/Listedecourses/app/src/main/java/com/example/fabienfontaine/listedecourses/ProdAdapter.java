@@ -46,7 +46,7 @@ public class ProdAdapter extends ArrayAdapter<Prods> {
         //getItem(position) va récupérer l'item [position] de la List<Prods> prods
         Prods prod = getItem(position);
 
-        //il ne reste plus qu'à remplir notre vue
+        //remplie notre vue
         viewHolder.nom.setText(prod.getNom());
         viewHolder.emplacement.setText(prod.getEmplacement());
         viewHolder.description.setText(prod.getDescription());
