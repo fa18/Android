@@ -1,9 +1,13 @@
 package com.example.fabienfontaine.listedecourses;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Created by fabien.fontaine on 15/02/2017.
@@ -25,16 +29,20 @@ public class Bdd extends SQLiteOpenHelper {
     private static final String TABLE_PRODUIT = "Produits";
     private static final String COL_ID_PRODUIT = "id_produit";
     private static final String COL_CATEGORIE = "categorie";
-    private static final String COL_NOM_PRODUIT = "nom";
+    private static final String COL_NOM_PRODUIT = "nom_produit";
+    private static final String COL_DESCRIPTION_PRODUIT = "description_produit";
     private static final String COL_CODE = "code";
 
     private static final String CREATE_TABLE_PRODUIT = "CREATE TABLE " + TABLE_PRODUIT + " ("
             + COL_ID_PRODUIT + "INTEGER PRIMARY KEY AUTOINCREMENT, "
             + COL_CATEGORIE + "INTEGER, "
             + COL_NOM_PRODUIT + "TEXT NOT NULL, "
+            + COL_DESCRIPTION_PRODUIT + "TEXT, "
             + COL_CODE + "TEXT );";
 
-    //Table Vendeur
+        //Insertion Produit
+
+    //Table Vend
     private static final String TABLE_VEND = "Vendeur";
     private static final String COL_PRIX = "prix";
     private static final String COL_UNITE = "unite";
@@ -67,10 +75,10 @@ public class Bdd extends SQLiteOpenHelper {
             + "FOREIGN KEY("+COL_ID_PRODUIT+") REFERENCES "+TABLE_VEND+"("+COL_ID_PRODUIT+"), "
             + "FOREIGN KEY("+COL_ID_MAGASIN+") REFERENCES "+TABLE_VEND+"("+COL_ID_MAGASIN+") "
             +" );";
-    
+
 
     public Bdd(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, name, factory, version);
+        super(context, "listeCourse.db", null, 1);
 
     }
 
@@ -91,6 +99,27 @@ public class Bdd extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        db.execSQL("DROP TABLE " + TABLE_MAGASIN + ";");
+        db.execSQL("DROP TABLE " + TABLE_PRODUIT + ";");
+        db.execSQL("DROP TABLE " + TABLE_VEND + ";");
+        db.execSQL("DROP TABLE " + TABLE_LISTE + ";");
+        onCreate(db);
     }
+
+    //http://www.androidhive.info/2013/09/android-sqlite-database-with-multiple-tables/
+    public List<Prods> createProds() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        List<Prods> liste = new LinkedList<>();
+
+        Cursor res = db.query(TABLE_PRODUIT, null, null, null, null, null, null); // select * from TABLE_PRODUITY;
+        res.moveToFirst(); // haut de la liste de résultats
+        while (! res.isAfterLast()) {// tant que pas fin
+            Prods p = new Prods();
+            p.setNom(res.getString(2)); // 3° colonne
+            liste.add(p);
+            res.moveToNext();
+        }
+        return liste;
+    }
+
 }

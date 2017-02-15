@@ -12,6 +12,10 @@ public class Prods {
     private String quantite;
     private String promotion;
 
+    public Prods() {
+
+    }
+
     public Prods(int color,String nom,String description,String prix, String magasin,  String emplacement,   String codeBarre,  String quantite, String promotion) {
         this.description = description;
         this.color = color;
