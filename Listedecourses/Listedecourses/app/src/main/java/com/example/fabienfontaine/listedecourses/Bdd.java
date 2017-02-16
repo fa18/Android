@@ -22,8 +22,8 @@ public class Bdd extends SQLiteOpenHelper {
 
 
     private static final String CREATE_TABLE_MAGASIN = "CREATE TABLE " + TABLE_MAGASIN + " ("
-            + COL_ID_MAGASIN + "INTEGER PRIMARY KEY AUTOINCREMENT, "
-            + COL_NOM_MAGASIN + "TEXT );";
+            + COL_ID_MAGASIN + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+            + COL_NOM_MAGASIN + " TEXT );";
 
     //Table Produit
     private static final String TABLE_PRODUIT = "Produit";
@@ -34,11 +34,11 @@ public class Bdd extends SQLiteOpenHelper {
     private static final String COL_CODE = "code";
 
     private static final String CREATE_TABLE_PRODUIT = "CREATE TABLE " + TABLE_PRODUIT + " ("
-            + COL_ID_PRODUIT + "INTEGER PRIMARY KEY AUTOINCREMENT, "
-            + COL_CATEGORIE + "INTEGER, "
-            + COL_NOM_PRODUIT + "TEXT NOT NULL, "
-            + COL_DESCRIPTION_PRODUIT + "TEXT, "
-            + COL_CODE + "TEXT );";
+            + COL_ID_PRODUIT + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+            + COL_CATEGORIE + " INTEGER, "
+            + COL_NOM_PRODUIT + " TEXT NOT NULL, "
+            + COL_DESCRIPTION_PRODUIT + " TEXT, "
+            + COL_CODE + " TEXT );";
 
         //Insertion Produit
         final String Insert_Produit="INSERT INTO Produit (categorie,nom_produit,description_produit) VALUES('bricolage','marteau','pour enfoncer des clous')";
@@ -51,14 +51,15 @@ public class Bdd extends SQLiteOpenHelper {
     private static final String COL_PROMOTION = "promotion";
 
     private static final String CREATE_TABLE_VEND = "CREATE TABLE " + TABLE_VEND + " ("
-            + COL_ID_PRODUIT + "INTEGER PRIMARY KEY, "
-            + COL_ID_MAGASIN + "INTEGER PRIMARY KEY, "
-            + COL_PRIX + "FLOAT, "
-            + COL_UNITE +"TEXT NOT NULL, "
-            + COL_RAYON +"TEXT, "
-            + COL_PROMOTION +"TEXT "
-            + "FOREIGN KEY("+COL_ID_PRODUIT+") REFERENCES "+TABLE_PRODUIT+"("+COL_ID_PRODUIT+"), "
-            + "FOREIGN KEY("+COL_ID_MAGASIN+") REFERENCES "+TABLE_MAGASIN+"("+COL_ID_MAGASIN+") "
+            + COL_ID_PRODUIT + " INTEGER, "
+            + COL_ID_MAGASIN + " INTEGER, "
+            + COL_PRIX + " FLOAT, "
+            + COL_UNITE +" TEXT NOT NULL, "
+            + COL_RAYON +" TEXT, "
+            + COL_PROMOTION +" TEXT "
+            + ", PRIMARY KEY('id_magasin','id_produit')"
+            + " FOREIGN KEY("+COL_ID_PRODUIT+") REFERENCES "+TABLE_PRODUIT+"("+COL_ID_PRODUIT+"), "
+            + " FOREIGN KEY("+COL_ID_MAGASIN+") REFERENCES "+TABLE_MAGASIN+"("+COL_ID_MAGASIN+") "
             +" );";
 
     //Table Liste
@@ -68,13 +69,14 @@ public class Bdd extends SQLiteOpenHelper {
     private static final String COL_ACHETE = "achete";
 
     private static final String CREATE_TABLE_LISTE = "CREATE TABLE " + TABLE_LISTE + " ("
-            + COL_ID_LISTE + "INTEGER PRIMARY KEY AUTOINCREMENT, "
-            + COL_ID_PRODUIT + "INTEGER PRIMARY KEY, "
-            + COL_ID_MAGASIN + "INTEGER PRIMARY KEY, "
-            + COL_QUANTITE + "FLOAT, "
-            + COL_ACHETE +"FLOAT"
-            + "FOREIGN KEY("+COL_ID_PRODUIT+") REFERENCES "+TABLE_VEND+"("+COL_ID_PRODUIT+"), "
-            + "FOREIGN KEY("+COL_ID_MAGASIN+") REFERENCES "+TABLE_VEND+"("+COL_ID_MAGASIN+") "
+            + COL_ID_LISTE + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+            + COL_ID_PRODUIT + " INTEGER, "
+            + COL_ID_MAGASIN + " INTEGER, "
+            + COL_QUANTITE + " FLOAT, "
+            + COL_ACHETE +" FLOAT"
+            + ", PRIMARY KEY(`id_magasin`,`id_produit`)"
+            + " FOREIGN KEY("+COL_ID_PRODUIT+") REFERENCES "+TABLE_VEND+"("+COL_ID_PRODUIT+"), "
+            + " FOREIGN KEY("+COL_ID_MAGASIN+") REFERENCES "+TABLE_VEND+"("+COL_ID_MAGASIN+") "
             +" );";
 
 
@@ -120,6 +122,7 @@ public class Bdd extends SQLiteOpenHelper {
         res.moveToFirst(); // haut de la liste de résultats
         while (! res.isAfterLast()) {// tant que pas fin
             Prods p = new Prods();
+
             p.setNom(res.getString(2)); // 3° colonne : nom
             p.setDescription(res.getString(3)); // description
             p.setCodeBarre(res.getString(4)); //code

@@ -42,10 +42,10 @@ public class Produits extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mListView = (ListView) findViewById(R.id.listView);
-        List<Prods> prods = genererProds();
+        //List<Prods> prods = genererProds();
 
-        //Bdd obj = new Bdd(getBaseContext(),"listeCourse.db", null, 1);
-        //List<Prods> prods = obj.createProds();
+        Bdd obj = new Bdd(getBaseContext(),"listeCourse.db", null, 1);
+        List<Prods> prods = obj.createProds();
 
         ProdAdapter adapter = new ProdAdapter(Produits.this, prods);
 
