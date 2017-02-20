@@ -41,7 +41,11 @@ public class Bdd extends SQLiteOpenHelper {
             + COL_CODE + " TEXT );";
 
         //Insertion Produit
-        final String Insert_Produit="INSERT INTO Produit (categorie,nom_produit,description_produit) VALUES('bricolage','marteau','pour enfoncer des clous')";
+        final String Insert_Produit="INSERT INTO Produit (categorie,nom_produit,description_produit,code) VALUES('bricolage','marteau','pour enfoncer des clou','codeBarre')";
+        final String Insert_Produit2="INSERT INTO Produit (categorie,nom_produit,description_produit,code) VALUES('bricolage','perceuse','pour faire des troux','|||||||||')";
+        final String Insert_Produit3="INSERT INTO Produit (categorie,nom_produit,description_produit,code) VALUES('bricolage','clou','35 mm','||| || || ')";
+
+
 
     //Table Vend
     private static final String TABLE_VEND = "Vendeur";
@@ -81,7 +85,8 @@ public class Bdd extends SQLiteOpenHelper {
 
 
     public Bdd(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, "listeCourse.db", null, 1);
+        super(context, "listeCourse.db", null, version);
+
 
     }
 
@@ -99,6 +104,8 @@ public class Bdd extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_VEND);
         db.execSQL(CREATE_TABLE_LISTE);
         db.execSQL(Insert_Produit);
+        db.execSQL(Insert_Produit2);
+        db.execSQL(Insert_Produit3);
 
 
     }
