@@ -64,7 +64,7 @@ public class Bdd extends SQLiteOpenHelper {
 
     //Table Liste
     private static final String TABLE_LISTE = "Listes";
-    private static final String COL_ID_LISTE = "_id";
+    private static final String COL_ID_LISTE = "id_liste";
     private static final String COL_QUANTITE = "quantite";
     private static final String COL_ACHETE = "achete";
 
@@ -73,8 +73,8 @@ public class Bdd extends SQLiteOpenHelper {
             + COL_ID_PRODUIT + " INTEGER, "
             + COL_ID_MAGASIN + " INTEGER, "
             + COL_QUANTITE + " FLOAT, "
-            + COL_ACHETE +" FLOAT"
-            + ", PRIMARY KEY(`id_magasin`,`id_produit`)"
+            + COL_ACHETE +" FLOAT, "
+         //   + " PRIMARY KEY('id_liste','id_magasin','id_produit')"
             + " FOREIGN KEY("+COL_ID_PRODUIT+") REFERENCES "+TABLE_VEND+"("+COL_ID_PRODUIT+"), "
             + " FOREIGN KEY("+COL_ID_MAGASIN+") REFERENCES "+TABLE_VEND+"("+COL_ID_MAGASIN+") "
             +" );";
