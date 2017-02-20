@@ -129,7 +129,7 @@ public class Bdd extends SQLiteOpenHelper {
         res.moveToFirst(); // haut de la liste de résultats
         while (! res.isAfterLast()) {// tant que pas fin
             Prods p = new Prods();
-
+            p.setCategorie(res.getString(1)); //categorie
             p.setNom(res.getString(2)); // 3° colonne : nom
             p.setDescription(res.getString(3)); // description
             p.setCodeBarre(res.getString(4)); //code

@@ -94,14 +94,6 @@
         android:layout_alignStart="@+id/rayon" />
 
     <TextView
-        android:text="promotion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/promotion"
-        android:layout_below="@+id/textView6"
-        android:layout_alignStart="@+id/textView6" />
-
-    <TextView
         android:id="@+id/prix"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -111,5 +103,23 @@
         android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
         android:layout_alignBottom="@+id/nom"
         android:layout_toEndOf="@+id/magasin" />
+
+    <TextView
+        android:text="promotion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/promotion"
+        android:layout_below="@+id/textView6"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="41dp" />
+
+    <TextView
+        android:text="categorie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:id="@+id/categorie"
+        android:layout_below="@+id/textView6"
+        android:layout_alignStart="@+id/textView6" />
 
 </RelativeLayout>

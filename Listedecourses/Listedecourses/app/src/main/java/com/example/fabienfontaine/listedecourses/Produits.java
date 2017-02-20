@@ -44,7 +44,7 @@ public class Produits extends AppCompatActivity {
         mListView = (ListView) findViewById(R.id.listView);
         //List<Prods> prods = genererProds();
 
-        Bdd obj = new Bdd(getBaseContext(),"listeCourse.db", null, 5);
+        Bdd obj = new Bdd(getBaseContext(),"listeCourse.db", null, 10);
         List<Prods> prods = obj.createProds();
 
         ProdAdapter adapter = new ProdAdapter(Produits.this, prods);
@@ -56,7 +56,7 @@ public class Produits extends AppCompatActivity {
 
     private List<Prods> genererProds(){
         List<Prods> prods = new ArrayList<Prods>();
-        prods.add(new Prods(Color.BLUE,"Pack d'eau","Eau de source naturelle", "3.3", "Carrefour","Rayon Eau", "| || ||| ||| |","35",""));
+        prods.add(new Prods(Color.BLUE,"Pack d'eau","Eau de source naturelle", "3.3", "Carrefour","Rayon Eau", "| || ||| ||| |","35","",""));
         prods.add(new Prods("Baguette",Color.YELLOW, "Boulangerie", "Baguette tradition moulée","0.9"));
         prods.add(new Prods("Tagliatelle",Color.YELLOW, "Rayon féculent", "Pattes italienne ","2"));
         prods.add(new Prods("Steak",Color.RED, "Rayon Boucherie", "steak 100% pur boeuf origine france","2"));

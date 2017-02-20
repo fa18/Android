@@ -11,16 +11,13 @@ public class Prods {
     private String magasin;
     private String quantite;
     private String promotion;
+    private String categorie;
 
     public Prods() {
 
     }
 
-    public Prods(String nom, String description, String codeBarre) {
-        this.nom = nom;
-        this.description = description;
-        this.codeBarre = codeBarre;
-    }
+
 
     public Prods(String emplacement, String description, String nom, String prix, String codeBarre, String magasin, String quantite, String promotion) {
         this.emplacement = emplacement;
@@ -33,7 +30,7 @@ public class Prods {
         this.promotion = promotion;
     }
 
-    public Prods(int color, String nom, String description, String prix, String magasin, String emplacement, String codeBarre, String quantite, String promotion) {
+    public Prods(int color, String nom, String description, String prix, String magasin, String emplacement, String codeBarre, String quantite, String categorie ,String promotion) {
         this.description = description;
         this.color = color;
         this.emplacement = emplacement;
@@ -42,6 +39,7 @@ public class Prods {
         this.codeBarre = codeBarre;
         this.magasin = magasin;
         this.quantite = quantite;
+        this.categorie= categorie;
         this.promotion = promotion;
     }
 
@@ -129,5 +127,13 @@ public class Prods {
 
     public void setPromotion(String promotion) {
         this.promotion = promotion;
+    }
+
+    public String getCategorie() {
+        return categorie;
+    }
+
+    public void setCategorie(String categorie) {
+        this.categorie = categorie;
     }
 }

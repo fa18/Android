@@ -38,6 +38,7 @@ public class ProdAdapter extends ArrayAdapter<Prods> {
             viewHolder.magasin= (TextView) convertView.findViewById(R.id.magasin);
             viewHolder.quantite= (TextView) convertView.findViewById(R.id.quantite);
             viewHolder.promotion= (TextView) convertView.findViewById(R.id.promotion);
+            viewHolder.categorie= (TextView) convertView.findViewById(R.id.categorie);
 
 
             convertView.setTag(viewHolder);
@@ -56,6 +57,7 @@ public class ProdAdapter extends ArrayAdapter<Prods> {
         viewHolder.magasin.setText(prod.getMagasin());
         viewHolder.quantite.setText(prod.getQuantite());
         viewHolder.promotion.setText(prod.getPromotion());
+        viewHolder.categorie.setText(prod.getCategorie());
 
         return convertView;
     }
@@ -70,5 +72,6 @@ public class ProdAdapter extends ArrayAdapter<Prods> {
         public TextView magasin;
         public TextView quantite;
         public TextView promotion;
+        public TextView categorie;
     }
 }
