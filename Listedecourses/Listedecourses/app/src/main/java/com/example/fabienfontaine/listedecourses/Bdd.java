@@ -47,7 +47,7 @@ public class Bdd extends SQLiteOpenHelper {
             + COL_IMAGE + " TEXT );";
 
     //Insertion Produit
-    final String Insert_Produit="INSERT INTO Produit (categorie,nom_produit,description_produit,code,image_produit) VALUES('bricolage','marteau','pour enfoncer des clous','codeBarre','Color.BLUE')";
+    final String Insert_Produit="INSERT INTO Produit (categorie,nom_produit,description_produit,code,image_produit) VALUES('bricolage','marteau','pour enfoncer des clous','||| || |||| || |','Color.BLUE')";
     final String Insert_Produit2="INSERT INTO Produit (categorie,nom_produit,description_produit,code) VALUES('bricolage','perceuse','pour faire des trous','|||||||||')";
     final String Insert_Produit3="INSERT INTO Produit (categorie,nom_produit,description_produit,code) VALUES('bricolage','clou','35 mm','||| || || ')";
 
@@ -141,18 +141,20 @@ public class Bdd extends SQLiteOpenHelper {
         res.moveToFirst(); // haut de la liste de résultats
         while (! res.isAfterLast()) {// tant que pas fin
             Prods p = new Prods();
-            p.setCategorie(res.getString(0)); //categorie
-            p.setNom(res.getString(1)); // 3° colonne : nom
+            p.setCategorie("Catégorie : "+res.getString(0)); //categorie
+            p.setNom(res.getString(1)); // nom
             p.setDescription(res.getString(2)); // description
             p.setCodeBarre(res.getString(3)); //code
             p.setColor(Color.BLUE); //couleur : reste à récuperer dans la base
 
 
-            p.setPrix(res.getString(4)); //prix
-            p.setQuantite(res.getString(5)); //unite
-            p.setEmplacement(res.getString(6)); //rayon
-            p.setPromotion(res.getString(7)); //promotion
-            p.setMagasin(res.getString(8)); //magasin
+            p.setPrix(res.getString(4)+" €"); //prix
+            p.setQuantite("En stock : "+res.getString(5)+" unités"); //unite
+            p.setEmplacement("au rayon : "+res.getString(6)); //rayon
+            if(res.getString(7)=="0") {
+                p.setPromotion("Promotion de : " + res.getString(7) + " %"); //promotion
+            }
+            p.setMagasin("Disponible chez : "+res.getString(8)); //magasin
 
             liste.add(p);
             res.moveToNext();

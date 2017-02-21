@@ -18,18 +18,6 @@ public class Prods {
     }
 
 
-
-    public Prods(String emplacement, String description, String nom, String prix, String codeBarre, String magasin, String quantite, String promotion) {
-        this.emplacement = emplacement;
-        this.description = description;
-        this.nom = nom;
-        this.prix = prix;
-        this.codeBarre = codeBarre;
-        this.magasin = magasin;
-        this.quantite = quantite;
-        this.promotion = promotion;
-    }
-
     public Prods(int color, String nom, String description, String prix, String magasin, String emplacement, String codeBarre, String quantite, String categorie ,String promotion) {
         this.description = description;
         this.color = color;
