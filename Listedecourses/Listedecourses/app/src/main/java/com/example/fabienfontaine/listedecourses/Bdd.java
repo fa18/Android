@@ -131,29 +131,29 @@ public class Bdd extends SQLiteOpenHelper {
     }
 
     // private final String MY_QUERY = "SELECT nom_produit, description_produit, code, prix, unite, rayon, promotion FROM Produit prod INNER JOIN Vendeur vend ON prod.id_produit=vend.id_produit INNER JOIN Magasin mag on mag.id_magasin=vend.id_magasin ";
-    private final String MY_QUERY = "SELECT categorie, nom_produit, description_produit, code FROM Produit ";
+    private final String MY_QUERY = "SELECT categorie, nom_produit, description_produit, code, prix, unite, rayon, promotion, nom_magasin FROM Produit join Vendeur using(id_produit) join Magasin using(id_magasin)";
     public List<Prods> createProds() {
         SQLiteDatabase db = this.getReadableDatabase();
         List<Prods> liste = new LinkedList<>();
 
-        Cursor res = db.query(TABLE_PRODUIT /*+ " INNER JOIN "+ TABLE_VEND + " INNER JOIN "+ TABLE_MAGASIN*/, null, null, null, null, null, null); // select * from TABLE_PRODUITY;
-        //Cursor res = db.rawQuery(MY_QUERY, new String[]{});
+        //Cursor res = db.query(TABLE_PRODUIT /*+ " INNER JOIN "+ TABLE_VEND + " INNER JOIN "+ TABLE_MAGASIN*/, null, null, null, null, null, null); // select * from TABLE_PRODUITY;
+        Cursor res = db.rawQuery(MY_QUERY, new String[]{});
         res.moveToFirst(); // haut de la liste de résultats
         while (! res.isAfterLast()) {// tant que pas fin
             Prods p = new Prods();
-            p.setCategorie(res.getString(1)); //categorie
-            p.setNom(res.getString(2)); // 3° colonne : nom
-            p.setDescription(res.getString(3)); // description
-            p.setCodeBarre(res.getString(4)); //code
+            p.setCategorie(res.getString(0)); //categorie
+            p.setNom(res.getString(1)); // 3° colonne : nom
+            p.setDescription(res.getString(2)); // description
+            p.setCodeBarre(res.getString(3)); //code
             p.setColor(Color.BLUE); //couleur : reste à récuperer dans la base
 
 
-            /* p.setPrix(res.getString(5)); //prix
-            p.setQuantite(res.getString(6)); //unite
-            p.setEmplacement(res.getString(7)); //rayon
-            p.setPromotion(res.getString(8)); //promotion
-            p.setMagasin(res.getString(10)); //magasin
-        */
+            p.setPrix(res.getString(4)); //prix
+            p.setQuantite(res.getString(5)); //unite
+            p.setEmplacement(res.getString(6)); //rayon
+            p.setPromotion(res.getString(7)); //promotion
+            p.setMagasin(res.getString(8)); //magasin
+
             liste.add(p);
             res.moveToNext();
         }
