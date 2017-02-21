@@ -6,9 +6,11 @@ import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Color;
+import android.util.Log;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by fabien.fontaine on 15/02/2017.
@@ -28,6 +30,7 @@ public class Bdd extends SQLiteOpenHelper {
 
         //insertion
         final String Insert_Magasin="INSERT INTO Magasin (nom_magasin) VALUES('Carrefour')";
+        final String Insert_Leclerc="INSERT INTO Magasin (nom_magasin) VALUES('Leclerc')";
 
     //Table Produit
     private static final String TABLE_PRODUIT = "Produit";
@@ -73,7 +76,9 @@ public class Bdd extends SQLiteOpenHelper {
             +" );";
 
         //Insertion
-        final String Insert_Vend="INSERT INTO Vendeur (id_produit,id_magasin,prix,unite,rayon,promotion) VALUES(1,1,'5','30','Brico','0')";
+        final String Insert_Vend="INSERT INTO Vendeur (id_produit,id_magasin,prix,unite,rayon,promotion) VALUES(1,1,'5','30','Brico','5')";
+        final String Insert_Vend_perceuse="INSERT INTO Vendeur (id_produit,id_magasin,prix,unite,rayon,promotion) VALUES(2,2,'35','30','Brico','10')";
+        final String Insert_Vend_clou="INSERT INTO Vendeur (id_produit,id_magasin,prix,unite,rayon,promotion) VALUES(3,1,'1','2000','Brico','0')";
 
     //Table Liste
     private static final String TABLE_LISTE = "Listes";
@@ -117,6 +122,9 @@ public class Bdd extends SQLiteOpenHelper {
         db.execSQL(Insert_Produit3);
         db.execSQL(Insert_Vend);
         db.execSQL(Insert_Magasin);
+        db.execSQL(Insert_Vend_perceuse);
+        db.execSQL(Insert_Leclerc);
+        db.execSQL(Insert_Vend_clou);
 
 
     }
@@ -151,8 +159,10 @@ public class Bdd extends SQLiteOpenHelper {
             p.setPrix(res.getString(4)+" €"); //prix
             p.setQuantite("En stock : "+res.getString(5)+" unités"); //unite
             p.setEmplacement("au rayon : "+res.getString(6)); //rayon
-            if(res.getString(7)=="0") {
+
+            if(!res.getString(7).equals("0"))  {
                 p.setPromotion("Promotion de : " + res.getString(7) + " %"); //promotion
+
             }
             p.setMagasin("Disponible chez : "+res.getString(8)); //magasin
 
