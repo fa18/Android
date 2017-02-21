@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Color;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -32,18 +33,20 @@ public class Bdd extends SQLiteOpenHelper {
     private static final String COL_NOM_PRODUIT = "nom_produit";
     private static final String COL_DESCRIPTION_PRODUIT = "description_produit";
     private static final String COL_CODE = "code";
+    private static final String COL_IMAGE = "image_produit";
 
     private static final String CREATE_TABLE_PRODUIT = "CREATE TABLE " + TABLE_PRODUIT + " ("
             + COL_ID_PRODUIT + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + COL_CATEGORIE + " INTEGER, "
             + COL_NOM_PRODUIT + " TEXT NOT NULL, "
             + COL_DESCRIPTION_PRODUIT + " TEXT, "
-            + COL_CODE + " TEXT );";
+            + COL_CODE + " TEXT, "
+            + COL_IMAGE + " TEXT );";
 
-        //Insertion Produit
-        final String Insert_Produit="INSERT INTO Produit (categorie,nom_produit,description_produit,code) VALUES('bricolage','marteau','pour enfoncer des clou','codeBarre')";
-        final String Insert_Produit2="INSERT INTO Produit (categorie,nom_produit,description_produit,code) VALUES('bricolage','perceuse','pour faire des troux','|||||||||')";
-        final String Insert_Produit3="INSERT INTO Produit (categorie,nom_produit,description_produit,code) VALUES('bricolage','clou','35 mm','||| || || ')";
+    //Insertion Produit
+    final String Insert_Produit="INSERT INTO Produit (categorie,nom_produit,description_produit,code,image_produit) VALUES('bricolage','marteau','pour enfoncer des clou','codeBarre','Color.BLUE')";
+    final String Insert_Produit2="INSERT INTO Produit (categorie,nom_produit,description_produit,code) VALUES('bricolage','perceuse','pour faire des troux','|||||||||')";
+    final String Insert_Produit3="INSERT INTO Produit (categorie,nom_produit,description_produit,code) VALUES('bricolage','clou','35 mm','||| || || ')";
 
 
 
@@ -66,6 +69,9 @@ public class Bdd extends SQLiteOpenHelper {
             + " FOREIGN KEY("+COL_ID_MAGASIN+") REFERENCES "+TABLE_MAGASIN+"("+COL_ID_MAGASIN+") "
             +" );";
 
+        //Insertion
+        final String Insert_Vend="INSERT INTO Vendeur (id_produit,id_magasin,prix,unite,rayon,promotion) VALUES(1,1,'5','30','Brico','0')";
+
     //Table Liste
     private static final String TABLE_LISTE = "Listes";
     private static final String COL_ID_LISTE = "id_liste";
@@ -78,7 +84,7 @@ public class Bdd extends SQLiteOpenHelper {
             + COL_ID_MAGASIN + " INTEGER, "
             + COL_QUANTITE + " FLOAT, "
             + COL_ACHETE +" FLOAT, "
-         //   + " PRIMARY KEY('id_liste','id_magasin','id_produit')"
+            //   + " PRIMARY KEY('id_liste','id_magasin','id_produit')"
             + " FOREIGN KEY("+COL_ID_PRODUIT+") REFERENCES "+TABLE_VEND+"("+COL_ID_PRODUIT+"), "
             + " FOREIGN KEY("+COL_ID_MAGASIN+") REFERENCES "+TABLE_VEND+"("+COL_ID_MAGASIN+") "
             +" );";
@@ -119,7 +125,7 @@ public class Bdd extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-   // private final String MY_QUERY = "SELECT nom_produit, description_produit, code, prix, unite, rayon, promotion FROM Produit prod INNER JOIN Vendeur vend ON prod.id_produit=vend.id_produit INNER JOIN Magasin mag on mag.id_magasin=vend.id_magasin ";
+    // private final String MY_QUERY = "SELECT nom_produit, description_produit, code, prix, unite, rayon, promotion FROM Produit prod INNER JOIN Vendeur vend ON prod.id_produit=vend.id_produit INNER JOIN Magasin mag on mag.id_magasin=vend.id_magasin ";
     public List<Prods> createProds() {
         SQLiteDatabase db = this.getReadableDatabase();
         List<Prods> liste = new LinkedList<>();
@@ -133,6 +139,9 @@ public class Bdd extends SQLiteOpenHelper {
             p.setNom(res.getString(2)); // 3° colonne : nom
             p.setDescription(res.getString(3)); // description
             p.setCodeBarre(res.getString(4)); //code
+            p.setColor(Color.BLUE); //couleur
+
+
             /* p.setPrix(res.getString(5)); //prix
             p.setQuantite(res.getString(6)); //unite
             p.setEmplacement(res.getString(7)); //rayon
