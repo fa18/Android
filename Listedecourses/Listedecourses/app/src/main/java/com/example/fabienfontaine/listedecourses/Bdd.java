@@ -19,12 +19,15 @@ public class Bdd extends SQLiteOpenHelper {
     //Table Magasin
     private static final String TABLE_MAGASIN = "Magasin";
     private static final String COL_ID_MAGASIN = "id_magasin";
-    private static final String COL_NOM_MAGASIN = "nom";
+    private static final String COL_NOM_MAGASIN = "nom_magasin";
 
 
     private static final String CREATE_TABLE_MAGASIN = "CREATE TABLE " + TABLE_MAGASIN + " ("
             + COL_ID_MAGASIN + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + COL_NOM_MAGASIN + " TEXT );";
+
+        //insertion
+        final String Insert_Magasin="INSERT INTO Magasin (nom_magasin) VALUES('Carrefour')";
 
     //Table Produit
     private static final String TABLE_PRODUIT = "Produit";
@@ -44,8 +47,8 @@ public class Bdd extends SQLiteOpenHelper {
             + COL_IMAGE + " TEXT );";
 
     //Insertion Produit
-    final String Insert_Produit="INSERT INTO Produit (categorie,nom_produit,description_produit,code,image_produit) VALUES('bricolage','marteau','pour enfoncer des clou','codeBarre','Color.BLUE')";
-    final String Insert_Produit2="INSERT INTO Produit (categorie,nom_produit,description_produit,code) VALUES('bricolage','perceuse','pour faire des troux','|||||||||')";
+    final String Insert_Produit="INSERT INTO Produit (categorie,nom_produit,description_produit,code,image_produit) VALUES('bricolage','marteau','pour enfoncer des clous','codeBarre','Color.BLUE')";
+    final String Insert_Produit2="INSERT INTO Produit (categorie,nom_produit,description_produit,code) VALUES('bricolage','perceuse','pour faire des trous','|||||||||')";
     final String Insert_Produit3="INSERT INTO Produit (categorie,nom_produit,description_produit,code) VALUES('bricolage','clou','35 mm','||| || || ')";
 
 
@@ -112,6 +115,8 @@ public class Bdd extends SQLiteOpenHelper {
         db.execSQL(Insert_Produit);
         db.execSQL(Insert_Produit2);
         db.execSQL(Insert_Produit3);
+        db.execSQL(Insert_Vend);
+        db.execSQL(Insert_Magasin);
 
 
     }
@@ -126,12 +131,13 @@ public class Bdd extends SQLiteOpenHelper {
     }
 
     // private final String MY_QUERY = "SELECT nom_produit, description_produit, code, prix, unite, rayon, promotion FROM Produit prod INNER JOIN Vendeur vend ON prod.id_produit=vend.id_produit INNER JOIN Magasin mag on mag.id_magasin=vend.id_magasin ";
+    private final String MY_QUERY = "SELECT categorie, nom_produit, description_produit, code FROM Produit ";
     public List<Prods> createProds() {
         SQLiteDatabase db = this.getReadableDatabase();
         List<Prods> liste = new LinkedList<>();
 
         Cursor res = db.query(TABLE_PRODUIT /*+ " INNER JOIN "+ TABLE_VEND + " INNER JOIN "+ TABLE_MAGASIN*/, null, null, null, null, null, null); // select * from TABLE_PRODUITY;
-        //Cursor res1 = db.rawQuery(MY_QUERY, new String[]{});
+        //Cursor res = db.rawQuery(MY_QUERY, new String[]{});
         res.moveToFirst(); // haut de la liste de résultats
         while (! res.isAfterLast()) {// tant que pas fin
             Prods p = new Prods();
@@ -139,7 +145,7 @@ public class Bdd extends SQLiteOpenHelper {
             p.setNom(res.getString(2)); // 3° colonne : nom
             p.setDescription(res.getString(3)); // description
             p.setCodeBarre(res.getString(4)); //code
-            p.setColor(Color.BLUE); //couleur
+            p.setColor(Color.BLUE); //couleur : reste à récuperer dans la base
 
 
             /* p.setPrix(res.getString(5)); //prix
