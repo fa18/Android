@@ -28,7 +28,7 @@ public class Magasins extends AppCompatActivity {
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        getSupportFragmentManager().beginTransaction().add(R.id.content_magasins, new AccueilFragment()).commit();
+
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

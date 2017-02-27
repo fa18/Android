@@ -100,7 +100,10 @@ public class Accueil extends AppCompatActivity
                     .replace(R.id.content_accueil, new MagasinsFragment())
                     .commit();
         } else if (id == R.id.nav_Liste_produits) {
-            startActivity(new Intent(this, Produits.class));
+           // startActivity(new Intent(this, Produits.class));
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.content_accueil, new ProduitFragment())
+                    .commit();
         } else if (id == R.id.nav_Liste_courses) {
 
         } else if (id == R.id.nav_historique) {
