@@ -1,5 +1,8 @@
 package com.example.fabienfontaine.listedecourses;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -41,6 +44,11 @@ public class Accueil extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
+
+
+       getSupportFragmentManager().beginTransaction().add(R.id.content_accueil, new AccueilFragment()).commit();
     }
 
     @Override
@@ -82,8 +90,15 @@ public class Accueil extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_liste_magasins) {
-            startActivity(new Intent(this, Magasins.class));
+        if(id == R.id.nav_accueil){
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.content_accueil, new AccueilFragment())
+                    .commit();
+        }else if (id == R.id.nav_liste_magasins) {
+            //startActivity(new Intent(this, Magasins.class));
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.content_accueil, new MagasinsFragment())
+                    .commit();
         } else if (id == R.id.nav_Liste_produits) {
             startActivity(new Intent(this, Produits.class));
         } else if (id == R.id.nav_Liste_courses) {
