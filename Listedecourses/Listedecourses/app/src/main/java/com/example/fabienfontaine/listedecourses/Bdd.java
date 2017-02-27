@@ -170,7 +170,7 @@ public class Bdd extends SQLiteOpenHelper {
 
             }
             else{
-                p.setQuantite("Rupture de stock ");
+                p.setPrix("Rupture de stock ");
             }
 
 
