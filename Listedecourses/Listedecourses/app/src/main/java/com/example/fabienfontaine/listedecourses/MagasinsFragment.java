@@ -51,6 +51,7 @@ public class MagasinsFragment extends Fragment {
                     t.show();
                 }
                 break;
+            
         }
     }
 
