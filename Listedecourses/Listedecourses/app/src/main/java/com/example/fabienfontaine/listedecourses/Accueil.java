@@ -48,7 +48,7 @@ public class Accueil extends AppCompatActivity
 
 
 
-       getSupportFragmentManager().beginTransaction().add(R.id.content_accueil, new AccueilFragment()).commit();
+       getSupportFragmentManager().beginTransaction().add(R.id.content_accueil, new AccueilFragment()).addToBackStack(null).commit();
     }
 
     @Override
