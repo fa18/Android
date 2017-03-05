@@ -178,20 +178,20 @@ public class Bdd extends SQLiteOpenHelper {
     }
 
     private final String MY_QUERY_MAG = "SELECT nom_magasin FROM  Magasin ";
-    public List<Prods> generateMagasins() {
+    public List<Magasins> generateMagasins() {
         SQLiteDatabase db = this.getReadableDatabase();
-        List<Prods> listeMagasin = new LinkedList<>();
+        List<Magasins> listeMagasin = new LinkedList<>();
 
-        //Cursor res = db.query(TABLE_PRODUIT /*+ " INNER JOIN "+ TABLE_VEND + " INNER JOIN "+ TABLE_MAGASIN*/, null, null, null, null, null, null); // select * from TABLE_PRODUITY;
+
         Cursor res = db.rawQuery(MY_QUERY_MAG, new String[]{});
         res.moveToFirst(); // haut de la liste de résultats
         while (! res.isAfterLast()) {// tant que pas fin
-            Prods p = new Prods();
+            Magasins m = new Magasins();
 
-            p.setNom(res.getString(0)); // nom
+            m.setNomMagasin(res.getString(0)); // nom
 
 
-            listeMagasin.add(p);
+            listeMagasin.add(m);
             res.moveToNext();
         }
 

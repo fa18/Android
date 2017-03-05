@@ -16,6 +16,15 @@ import java.util.List;
 public class Magasins extends AppCompatActivity {
 
     ListView mListViewMag;
+    private String nomMagasin;
+
+    public String getNomMagasin() {
+        return nomMagasin;
+    }
+
+    public void setNomMagasin(String nomMagasin) {
+        this.nomMagasin = nomMagasin;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +45,8 @@ public class Magasins extends AppCompatActivity {
         //
         mListViewMag = (ListView) findViewById(R.id.listViewMag);
         Bdd obj = new Bdd(getBaseContext(),"listeCourse.db", null, 28);
-        List<Prods> magasins = obj.createProds();
-        ProdAdapter adapter = new ProdAdapter(Magasins.this, magasins);
+        List<Magasins> magasins = obj.generateMagasins();
+        MagAdaptater adapter = new MagAdaptater(Magasins.this, magasins);
         mListViewMag.setAdapter(adapter);
     }
 
