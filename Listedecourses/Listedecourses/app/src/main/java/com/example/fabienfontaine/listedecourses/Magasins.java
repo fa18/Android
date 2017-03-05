@@ -8,9 +8,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.Toast;
 
+import java.util.List;
+
 public class Magasins extends AppCompatActivity {
+
+    ListView mListViewMag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +33,12 @@ public class Magasins extends AppCompatActivity {
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
+        //
+        mListViewMag = (ListView) findViewById(R.id.listViewMag);
+        Bdd obj = new Bdd(getBaseContext(),"listeCourse.db", null, 28);
+        List<Prods> magasins = obj.createProds();
+        ProdAdapter adapter = new ProdAdapter(Magasins.this, magasins);
+        mListViewMag.setAdapter(adapter);
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

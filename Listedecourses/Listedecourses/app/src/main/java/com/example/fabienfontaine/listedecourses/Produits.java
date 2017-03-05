@@ -55,7 +55,7 @@ public class Produits extends AppCompatActivity {
 
 
     }
-
+/*
     private List<Prods> genererProds(){
         List<Prods> prods = new ArrayList<Prods>();
         prods.add(new Prods(Color.BLUE,"Pack d'eau","Eau de source naturelle", "3.3", "Carrefour","Rayon Eau", "| || ||| ||| |","35","",""));
@@ -65,7 +65,7 @@ public class Produits extends AppCompatActivity {
         prods.add(new Prods("Activia",Color.GREEN, "Rayon frais", "0% de matières grasses","1.5"));
         return prods;
     }
-
+*/
 
 
 

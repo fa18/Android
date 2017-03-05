@@ -155,9 +155,6 @@ public class Bdd extends SQLiteOpenHelper {
             p.setCodeBarre(res.getString(3)); //code
             p.setColor(Color.BLUE); //couleur : reste à récuperer dans la base
 
-
-
-
             if(!res.getString(5).equals("0")) {
                 p.setQuantite("En stock : " + res.getString(5) + " unités"); //unite
                 p.setEmplacement("au rayon : "+res.getString(6)); //rayon
@@ -173,17 +170,32 @@ public class Bdd extends SQLiteOpenHelper {
                 p.setPrix("Rupture de stock ");
             }
 
-
-
-
-
-
             liste.add(p);
             res.moveToNext();
         }
 
-
         return liste;
+    }
+
+    private final String MY_QUERY_MAG = "SELECT nom_magasin FROM  Magasin ";
+    public List<Prods> generateMagasins() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        List<Prods> listeMagasin = new LinkedList<>();
+
+        //Cursor res = db.query(TABLE_PRODUIT /*+ " INNER JOIN "+ TABLE_VEND + " INNER JOIN "+ TABLE_MAGASIN*/, null, null, null, null, null, null); // select * from TABLE_PRODUITY;
+        Cursor res = db.rawQuery(MY_QUERY_MAG, new String[]{});
+        res.moveToFirst(); // haut de la liste de résultats
+        while (! res.isAfterLast()) {// tant que pas fin
+            Prods p = new Prods();
+
+            p.setNom(res.getString(0)); // nom
+
+
+            listeMagasin.add(p);
+            res.moveToNext();
+        }
+
+        return listeMagasin;
     }
 
 }
