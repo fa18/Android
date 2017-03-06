@@ -97,8 +97,11 @@ public class Bdd extends SQLiteOpenHelper {
             + " FOREIGN KEY("+COL_ID_MAGASIN+") REFERENCES "+TABLE_VEND+"("+COL_ID_MAGASIN+") "
             +" );";
 
-    
-    private static final int VERSION = 30;
+    //Insertion
+    final String Insert_Liste_User="INSERT INTO Listes (id_liste,id_produit,id_magasin,quantite,achete) VALUES(1,1,1,1,0)";
+
+
+    private static final int VERSION = 31;
 
     public Bdd(Context context, String name, SQLiteDatabase.CursorFactory factory) {
         super(context, "listeCourse.db", null, VERSION);
@@ -125,10 +128,12 @@ public class Bdd extends SQLiteOpenHelper {
         db.execSQL(Insert_Vend_perceuse);
         db.execSQL(Insert_Leclerc);
         db.execSQL(Insert_Vend_clou);
+        db.execSQL(Insert_Liste_User);
 
 
     }
 
+    //attention faire plutot update table quand l'utilisateur aura rentré des données
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE " + TABLE_MAGASIN + ";");
@@ -199,7 +204,7 @@ public class Bdd extends SQLiteOpenHelper {
     }
 
     //recupere les produits dans la liste de l'utilisateur
-    private final String MY_QUERY_USER_LISTE = "SELECT categorie, nom_produit, description_produit, code, prix, unite, rayon, promotion, nom_magasin FROM Produit join Vendeur using(id_produit) join Magasin using(id_magasin)  "; //join Listes using(id_liste,id_produit,id_magasin)
+    private final String MY_QUERY_USER_LISTE = "SELECT categorie, nom_produit, description_produit, code, prix, unite, rayon, promotion, nom_magasin FROM Produit join Vendeur using(id_produit) join Magasin using(id_magasin) join Listes using(id_produit,id_magasin) "; //join Listes using(id_produit,id_magasin)
     public List<Prods> userProds() {
         SQLiteDatabase db = this.getReadableDatabase();
         List<Prods> liste = new LinkedList<>();
