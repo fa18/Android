@@ -33,7 +33,7 @@ public class ProduitFragment extends Fragment {
         mListView = (ListView) vue.findViewById(R.id.listView);
         
 
-        Bdd obj = new Bdd(getContext(),"listeCourse.db", null, 28);
+        Bdd obj = new Bdd(getContext(),"listeCourse.db", null);
         List<Prods> prods = obj.createProds();
 
         ProdAdapter adapter = new ProdAdapter(getContext(), prods);

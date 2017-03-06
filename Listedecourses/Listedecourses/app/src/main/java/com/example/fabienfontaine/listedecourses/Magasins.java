@@ -44,7 +44,7 @@ public class Magasins extends AppCompatActivity {
 
         //
         mListViewMag = (ListView) findViewById(R.id.listViewMag);
-        Bdd obj = new Bdd(getBaseContext(),"listeCourse.db", null, 28);
+        Bdd obj = new Bdd(getBaseContext(),"listeCourse.db", null);
         List<Magasins> magasins = obj.generateMagasins();
         MagAdaptater adapter = new MagAdaptater(Magasins.this, magasins);
         mListViewMag.setAdapter(adapter);

@@ -42,7 +42,7 @@ public class MagasinsFragment extends Fragment {
         });
 
         mListViewMag = (ListView) v.findViewById(R.id.listViewMag);
-        Bdd obj = new Bdd(getContext(),"listeCourse.db", null, 28);
+        Bdd obj = new Bdd(getContext(),"listeCourse.db", null);
         List<Magasins> magasins = obj.generateMagasins();
         MagAdaptater adapter = new MagAdaptater(getContext(), magasins);
         mListViewMag.setAdapter(adapter);

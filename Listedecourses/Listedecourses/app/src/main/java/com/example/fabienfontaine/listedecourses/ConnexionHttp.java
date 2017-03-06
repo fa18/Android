@@ -31,48 +31,27 @@ public class ConnexionHttp extends AppCompatActivity {
         button = (Button)this.findViewById(R.id.button);
         web = (WebView)this.findViewById(R.id.webView);
 
-
-        /*
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                try {
-                    url = new URL("https://www.iutc3.unicaen.fr/");
-                    String res = new Loader().execute(url).get();
-
-                    web.loadData(res,"text/html; charset=UTF-8", null);
-
-
-                }catch(Exception e){
-
-                }
-
-            }
-        });*/
-
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 try {
                     url = new URL("https://www.iutc3.unicaen.fr/");
                     new Loader().execute(url);
-                    onPostExecute("");
+
                 }catch(Exception e){
 
                 }
             }
 
-            protected void onPostExecute(String res) {
 
-                web.loadData(res,"text/html; charset=UTF-8", null);
-
-            }
         });
     }
 
 private class Loader extends AsyncTask<URL, Integer, String> {
 
     protected void onPostExecute(String res) {
+
+        web.loadData(res,"text/html; charset=UTF-8", null);
 
     }
 

@@ -87,21 +87,21 @@ public class Bdd extends SQLiteOpenHelper {
     private static final String COL_ACHETE = "achete";
 
     private static final String CREATE_TABLE_LISTE = "CREATE TABLE " + TABLE_LISTE + " ("
-            + COL_ID_LISTE + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+            + COL_ID_LISTE + " INTEGER , "
             + COL_ID_PRODUIT + " INTEGER, "
             + COL_ID_MAGASIN + " INTEGER, "
             + COL_QUANTITE + " FLOAT, "
             + COL_ACHETE +" FLOAT, "
-            //   + " PRIMARY KEY('id_liste','id_magasin','id_produit')"
+            + " PRIMARY KEY('id_liste','id_magasin','id_produit')"
             + " FOREIGN KEY("+COL_ID_PRODUIT+") REFERENCES "+TABLE_VEND+"("+COL_ID_PRODUIT+"), "
             + " FOREIGN KEY("+COL_ID_MAGASIN+") REFERENCES "+TABLE_VEND+"("+COL_ID_MAGASIN+") "
             +" );";
 
+    
+    private static final int VERSION = 30;
 
-    public Bdd(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, "listeCourse.db", null, version);
-
-
+    public Bdd(Context context, String name, SQLiteDatabase.CursorFactory factory) {
+        super(context, "listeCourse.db", null, VERSION);
     }
 
     public Bdd(Context context, String name, SQLiteDatabase.CursorFactory factory, int version, DatabaseErrorHandler errorHandler) {
@@ -199,7 +199,7 @@ public class Bdd extends SQLiteOpenHelper {
     }
 
     //recupere les produits dans la liste de l'utilisateur
-    private final String MY_QUERY_USER_LISTE = "SELECT categorie, nom_produit, description_produit, code, prix, unite, rayon, promotion, nom_magasin FROM Produit join Vendeur using(id_produit) join Magasin using(id_magasin)";
+    private final String MY_QUERY_USER_LISTE = "SELECT categorie, nom_produit, description_produit, code, prix, unite, rayon, promotion, nom_magasin FROM Produit join Vendeur using(id_produit) join Magasin using(id_magasin)  "; //join Listes using(id_liste,id_produit,id_magasin)
     public List<Prods> userProds() {
         SQLiteDatabase db = this.getReadableDatabase();
         List<Prods> liste = new LinkedList<>();
