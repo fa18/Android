@@ -9,7 +9,7 @@ public class Prods {
     private String prix;
     private String codeBarre;
     private String magasin;
-    private String quantite;
+    private float quantite;
     private String promotion;
     private String categorie;
 
@@ -18,7 +18,7 @@ public class Prods {
     }
 
 
-    public Prods(int color, String nom, String description, String prix, String magasin, String emplacement, String codeBarre, String quantite, String categorie ,String promotion) {
+    public Prods(int color, String nom, String description, String prix, String magasin, String emplacement, String codeBarre, float quantite, String categorie ,String promotion) {
         this.description = description;
         this.color = color;
         this.emplacement = emplacement;
@@ -102,10 +102,13 @@ public class Prods {
     }
 
     public String getQuantite() {
-        return quantite;
+        if (quantite == 0)
+            return "Rupture de stock";
+        else
+            return "En stock : " + quantite + " unités";
     }
 
-    public void setQuantite(String quantite) {
+    public void setQuantite(float quantite) {
         this.quantite = quantite;
     }
 

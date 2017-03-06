@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -39,7 +40,7 @@ public class ProdAdapter extends ArrayAdapter<Prods> {
             viewHolder.quantite= (TextView) convertView.findViewById(R.id.quantite);
             viewHolder.promotion= (TextView) convertView.findViewById(R.id.promotion);
             viewHolder.categorie= (TextView) convertView.findViewById(R.id.categorie);
-
+            viewHolder.ajout = (Button) convertView.findViewById(R.id.ajouter_produit);
 
             convertView.setTag(viewHolder);
         }
@@ -58,6 +59,7 @@ public class ProdAdapter extends ArrayAdapter<Prods> {
         viewHolder.quantite.setText(prod.getQuantite());
         viewHolder.promotion.setText(prod.getPromotion());
         viewHolder.categorie.setText(prod.getCategorie());
+        viewHolder.ajout.setEnabled(! prod.getQuantite().equals("Rupture de stock"));
 
         return convertView;
     }
@@ -73,5 +75,6 @@ public class ProdAdapter extends ArrayAdapter<Prods> {
         public TextView quantite;
         public TextView promotion;
         public TextView categorie;
+        public Button ajout;
     }
 }

@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.List;
@@ -23,7 +24,6 @@ public class ProduitFragment extends Fragment {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -31,7 +31,7 @@ public class ProduitFragment extends Fragment {
         View vue = inflater.inflate(R.layout.content_produits, container, false);
 
         mListView = (ListView) vue.findViewById(R.id.listView);
-        
+
 
         Bdd obj = new Bdd(getContext(),"listeCourse.db", null);
         List<Prods> prods = obj.createProds();

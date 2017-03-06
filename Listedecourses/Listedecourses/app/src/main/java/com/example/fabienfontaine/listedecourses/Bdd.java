@@ -7,6 +7,11 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Color;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+
+import static android.view.View.INVISIBLE;
+import static android.view.View.VISIBLE;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -161,7 +166,8 @@ public class Bdd extends SQLiteOpenHelper {
             p.setColor(Color.BLUE); //couleur : reste à récuperer dans la base
 
             if(!res.getString(5).equals("0")) {
-                p.setQuantite("En stock : " + res.getString(5) + " unités"); //unite
+                p.setQuantite(res.getFloat(5));
+                //p.setQuantite("En stock : " + res.getString(5) + " unités"); //unite
                 p.setEmplacement("au rayon : "+res.getString(6)); //rayon
                 p.setMagasin("Disponible chez : "+res.getString(8)); //magasin
                 p.setPrix(res.getString(4)+" €"); //prix
@@ -221,7 +227,7 @@ public class Bdd extends SQLiteOpenHelper {
             p.setColor(Color.BLUE); //couleur : reste à récuperer dans la base
 
             if(!res.getString(5).equals("0")) {
-                p.setQuantite("En stock : " + res.getString(5) + " unités"); //unite
+                p.setQuantite(res.getFloat(5)); //unite
                 p.setEmplacement("au rayon : "+res.getString(6)); //rayon
                 p.setMagasin("Disponible chez : "+res.getString(8)); //magasin
                 p.setPrix(res.getString(4)+" €"); //prix
