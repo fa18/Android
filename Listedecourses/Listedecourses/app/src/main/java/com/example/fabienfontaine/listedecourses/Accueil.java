@@ -105,6 +105,9 @@ public class Accueil extends AppCompatActivity
                     .replace(R.id.content_accueil, new ProduitFragment())
                     .commit();
         } else if (id == R.id.nav_Liste_courses) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.content_accueil, new ListeCourseFragment())
+                    .commit();
 
         } else if (id == R.id.nav_historique) {
 

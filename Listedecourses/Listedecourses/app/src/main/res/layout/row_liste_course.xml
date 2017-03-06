@@ -96,13 +96,6 @@
         android:layout_alignBottom="@+id/emplacement"
         android:layout_toEndOf="@+id/categorie" />
 
-    <Button
-        android:text="Ajouter ce produit das ma liste"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/button2"
-        android:layout_marginStart="16dp"
-        android:layout_below="@+id/quantite"
-        android:layout_alignParentStart="true" />
+
 
 </RelativeLayout>

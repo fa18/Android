@@ -34,7 +34,7 @@ public class ListeCourseFragment extends Fragment {
         
 
         Bdd obj = new Bdd(getContext(),"listeCourse.db", null, 28);
-        List<Prods> prods = obj.createProds();
+        List<Prods> prods = obj.userProds();
 
         ListeCourseAdaptater adapter = new ListeCourseAdaptater(getContext(), prods);
 
