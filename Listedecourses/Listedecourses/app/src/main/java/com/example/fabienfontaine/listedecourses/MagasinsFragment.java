@@ -9,7 +9,10 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.Toast;
+
+import java.util.List;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -18,7 +21,7 @@ import static android.app.Activity.RESULT_OK;
  * A simple {@link Fragment} subclass.
  */
 public class MagasinsFragment extends Fragment {
-
+    ListView mListViewMag;
 
     public MagasinsFragment() {
         // Required empty public constructor
@@ -37,6 +40,13 @@ public class MagasinsFragment extends Fragment {
                 startActivityForResult(new Intent(view.getContext(),AjoutMagasin.class),90);
             }
         });
+
+        mListViewMag = (ListView) v.findViewById(R.id.listViewMag);
+        Bdd obj = new Bdd(getContext(),"listeCourse.db", null, 28);
+        List<Magasins> magasins = obj.generateMagasins();
+        MagAdaptater adapter = new MagAdaptater(getContext(), magasins);
+        mListViewMag.setAdapter(adapter);
+
         return v;
     }
 
