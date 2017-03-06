@@ -29,8 +29,8 @@
             android:icon="@drawable/ic_menu_liste_courses"
             android:title="Ma liste de courses"
             android:visible="true"
-            android:enabled="false"
-            android:checkable="false" />
+            android:checkable="false"
+            android:enabled="true" />
         <item
             android:id="@+id/nav_historique"
             android:icon="@drawable/ic_menu_historique"
