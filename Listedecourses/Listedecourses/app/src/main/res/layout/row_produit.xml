@@ -43,20 +43,20 @@
         android:layout_alignStart="@+id/nom" />
 
     <TextView
+        android:text="quantite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/quantite"
+        android:layout_below="@+id/magasin"
+        android:layout_alignStart="@+id/magasin" />
+
+    <TextView
         android:text="categorie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/categorie"
         android:layout_above="@+id/codeBarre"
         android:layout_alignStart="@+id/description" />
-
-    <TextView
-        android:id="@+id/emplacement"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="Emplacement"
-        android:layout_below="@+id/magasin"
-        android:layout_alignStart="@+id/magasin" />
 
     <TextView
         android:id="@+id/prix"
@@ -66,7 +66,7 @@
 
         tools:text="prix"
         android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
-        android:layout_alignBaseline="@+id/nom"
+        android:layout_marginStart="31dp"
         android:layout_alignBottom="@+id/nom"
         android:layout_toEndOf="@+id/description" />
 
@@ -79,21 +79,20 @@
         android:layout_alignParentStart="true" />
 
     <TextView
-        android:text="quantite"
+        android:id="@+id/emplacement"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/quantite"
-        android:layout_below="@+id/emplacement"
-        android:layout_alignParentStart="true" />
+        tools:text="Emplacement"
+        android:layout_below="@+id/codeBarre"
+        android:layout_toEndOf="@+id/description" />
 
     <TextView
         android:text="promotion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/promotion"
-        android:textColor="@android:color/holo_red_light"
-        android:layout_alignBaseline="@+id/emplacement"
-        android:layout_alignBottom="@+id/emplacement"
-        android:layout_toEndOf="@+id/categorie" />
+        android:layout_below="@+id/quantite"
+        android:layout_alignStart="@+id/categorie"
+        android:layout_marginStart="27dp" />
 
 </RelativeLayout>
