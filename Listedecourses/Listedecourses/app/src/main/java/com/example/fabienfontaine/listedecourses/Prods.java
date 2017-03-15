@@ -16,6 +16,7 @@ public class Prods {
     //pour insertion
     int numProduit;
     int idMagasin;
+    int idListe;
 
 
 
@@ -149,4 +150,14 @@ public class Prods {
     public void setIdMagasin(int idMagasin) {
         this.idMagasin = idMagasin;
     }
+
+    public int getIdListe() {
+        return idListe;
+    }
+
+    public void setIdListe(int idListe) {
+        this.idListe = idListe;
+    }
+
+
 }

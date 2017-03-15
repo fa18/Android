@@ -75,6 +75,7 @@ public class ProdAdapter extends ArrayAdapter<Prods> implements View.OnClickList
         viewHolder.ajout.setEnabled(! prod.getQuantite().equals("Rupture de stock"));
         viewHolder.numProduit = prod.getNumProduit();
         viewHolder.idMagasin = prod.getIdMagasin();
+        viewHolder.idListe = prod.getIdMagasin();
 
 
         viewHolder.ajout.setTag(viewHolder);
@@ -92,7 +93,10 @@ public class ProdAdapter extends ArrayAdapter<Prods> implements View.OnClickList
 
         //insérer ces valeurs dans la base
         ContentValues cv = new  ContentValues();
-        cv.put("id_liste",3); //numListe
+        //cv.put("id_liste",3); //numListe
+        cv.put("id_liste",holder.idListe+1); //numListe
+        //problème : ajout dans 1 nouvelle liste
+
         cv.put("id_produit",holder.numProduit); //numProduit
         //cv.put("id_produit",1); //numProduit
         cv.put("id_magasin",holder.idMagasin); //numMagasin
@@ -121,5 +125,6 @@ public class ProdAdapter extends ArrayAdapter<Prods> implements View.OnClickList
         public Button ajout;
         public int numProduit;
         public int idMagasin;
+        public int idListe;
     }
 }
