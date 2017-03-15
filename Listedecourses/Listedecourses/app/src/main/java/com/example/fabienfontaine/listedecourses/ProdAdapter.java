@@ -73,7 +73,10 @@ public class ProdAdapter extends ArrayAdapter<Prods> implements View.OnClickList
 
         //pour insertion dans la liste de course de l'user
         viewHolder.ajout.setEnabled(! prod.getQuantite().equals("Rupture de stock"));
-        viewHolder.id = prod.getID();
+        viewHolder.numProduit = prod.getNumProduit();
+        viewHolder.idMagasin = prod.getIdMagasin();
+
+
         viewHolder.ajout.setTag(viewHolder);
         return convertView;
     }
@@ -89,12 +92,12 @@ public class ProdAdapter extends ArrayAdapter<Prods> implements View.OnClickList
 
         //insérer ces valeurs dans la base
         ContentValues cv = new  ContentValues();
-        cv.put("id_liste",2); //numListe
-        cv.put("id_produit",holder.id); //numProduit
+        cv.put("id_liste",3); //numListe
+        cv.put("id_produit",holder.numProduit); //numProduit
         //cv.put("id_produit",1); //numProduit
-        cv.put("id_magasin",1); //numMagasin
+        cv.put("id_magasin",holder.idMagasin); //numMagasin
 
-        //TextView quantiteText = holder.quantite;
+        //TextView quantiteText = holder.quantite; //valeur de l'id du xml
         //cv.put("quantite",Integer.valueOf(quantiteText.getText().toString())); //quantite   que veut l'utilisateur
         cv.put("quantite",1);
         cv.put("achete",0); //achete
@@ -116,6 +119,7 @@ public class ProdAdapter extends ArrayAdapter<Prods> implements View.OnClickList
 
         //pour insertion dans la liste de course de l'user
         public Button ajout;
-        public int id;
+        public int numProduit;
+        public int idMagasin;
     }
 }

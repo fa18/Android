@@ -12,7 +12,12 @@ public class Prods {
     private float quantite;
     private String promotion;
     private String categorie;
-    int ID;
+
+    //pour insertion
+    int numProduit;
+    int idMagasin;
+
+
 
     public Prods() {
 
@@ -129,11 +134,19 @@ public class Prods {
         this.categorie = categorie;
     }
 
-    public int getID() {
-        return ID;
+    public int getNumProduit() {
+        return numProduit;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setNumProduit(int numProduit) {
+        this.numProduit = numProduit;
+    }
+
+    public int getIdMagasin() {
+        return idMagasin;
+    }
+
+    public void setIdMagasin(int idMagasin) {
+        this.idMagasin = idMagasin;
     }
 }
