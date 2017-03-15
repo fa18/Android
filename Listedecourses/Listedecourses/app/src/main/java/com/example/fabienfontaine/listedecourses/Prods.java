@@ -12,6 +12,7 @@ public class Prods {
     private float quantite;
     private String promotion;
     private String categorie;
+    int ID;
 
     public Prods() {
 
@@ -126,5 +127,13 @@ public class Prods {
 
     public void setCategorie(String categorie) {
         this.categorie = categorie;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
     }
 }

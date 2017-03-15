@@ -106,16 +106,16 @@ public class Bdd extends SQLiteOpenHelper {
     final String Insert_Liste_User="INSERT INTO Listes (id_liste,id_produit,id_magasin,quantite,achete) VALUES(1,1,1,1,0)";
 
 
-    private static final int VERSION = 31;
+    private static final int VERSION = 32;
 
-    public Bdd(Context context, String name, SQLiteDatabase.CursorFactory factory) {
+    public Bdd(Context context) {
         super(context, "listeCourse.db", null, VERSION);
     }
-
+/*
     public Bdd(Context context, String name, SQLiteDatabase.CursorFactory factory, int version, DatabaseErrorHandler errorHandler) {
         super(context, name, factory, version, errorHandler);
     }
-
+*/
 
 
     @Override
@@ -149,7 +149,7 @@ public class Bdd extends SQLiteOpenHelper {
     }
 
     // private final String MY_QUERY = "SELECT nom_produit, description_produit, code, prix, unite, rayon, promotion FROM Produit prod INNER JOIN Vendeur vend ON prod.id_produit=vend.id_produit INNER JOIN Magasin mag on mag.id_magasin=vend.id_magasin ";
-    private final String MY_QUERY = "SELECT categorie, nom_produit, description_produit, code, prix, unite, rayon, promotion, nom_magasin FROM Produit join Vendeur using(id_produit) join Magasin using(id_magasin)";
+    private final String MY_QUERY = "SELECT categorie, nom_produit, description_produit, code, prix, unite, rayon, promotion, nom_magasin, id_produit FROM Produit join Vendeur using(id_produit) join Magasin using(id_magasin)";
     public List<Prods> createProds() {
         SQLiteDatabase db = this.getReadableDatabase();
         List<Prods> liste = new LinkedList<>();
@@ -164,6 +164,7 @@ public class Bdd extends SQLiteOpenHelper {
             p.setDescription(res.getString(2)); // description
             p.setCodeBarre(res.getString(3)); //code
             p.setColor(Color.BLUE); //couleur : reste à récuperer dans la base
+            p.setID(res.getInt(9));
 
             if(!res.getString(5).equals("0")) {
                 p.setQuantite(res.getFloat(5));

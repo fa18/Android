@@ -44,7 +44,7 @@ public class Produits extends AppCompatActivity {
         mListView = (ListView) findViewById(R.id.listView);
         //List<Prods> prods = genererProds();
 
-        Bdd obj = new Bdd(getBaseContext(),"listeCourse.db", null);
+        Bdd obj = new Bdd(getBaseContext());
         List<Prods> prods = obj.createProds();
 
         ProdAdapter adapter = new ProdAdapter(Produits.this, prods);

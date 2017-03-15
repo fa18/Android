@@ -1,11 +1,15 @@
 package com.example.fabienfontaine.listedecourses;
 
 
+import android.content.ContentValues;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.List;
@@ -33,12 +37,15 @@ public class ListeCourseFragment extends Fragment {
         pUserListView = (ListView) vue.findViewById(R.id.UserlistView);
         
 
-        Bdd obj = new Bdd(getContext(),"listeCourse.db", null);
+        Bdd obj = new Bdd(getContext());
         List<Prods> prods = obj.userProds();
 
         ListeCourseAdaptater adapter = new ListeCourseAdaptater(getContext(), prods);
 
        pUserListView.setAdapter(adapter);
+
+
+
         return vue;
     }
 

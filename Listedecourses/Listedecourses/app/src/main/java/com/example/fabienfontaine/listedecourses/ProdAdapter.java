@@ -1,6 +1,8 @@
 package com.example.fabienfontaine.listedecourses;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,8 +14,14 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import static com.example.fabienfontaine.listedecourses.R.id.quantite;
+
 //vue
-public class ProdAdapter extends ArrayAdapter<Prods> {
+public class ProdAdapter extends ArrayAdapter<Prods> implements View.OnClickListener {
+
+
+    protected SQLiteDatabase listeCourse = null;
+    protected Bdd mHandler = null;
 
     //prods est la liste des models à afficher
     public ProdAdapter(Context context, List<Prods> prods) {
@@ -40,7 +48,10 @@ public class ProdAdapter extends ArrayAdapter<Prods> {
             viewHolder.quantite= (TextView) convertView.findViewById(R.id.quantite);
             viewHolder.promotion= (TextView) convertView.findViewById(R.id.promotion);
             viewHolder.categorie= (TextView) convertView.findViewById(R.id.categorie);
+
+            //pour insertion dans la liste de course de l'user
             viewHolder.ajout = (Button) convertView.findViewById(R.id.ajouter_produit);
+            viewHolder.ajout.setOnClickListener(this);
 
             convertView.setTag(viewHolder);
         }
@@ -59,9 +70,36 @@ public class ProdAdapter extends ArrayAdapter<Prods> {
         viewHolder.quantite.setText(prod.getQuantite());
         viewHolder.promotion.setText(prod.getPromotion());
         viewHolder.categorie.setText(prod.getCategorie());
-        viewHolder.ajout.setEnabled(! prod.getQuantite().equals("Rupture de stock"));
 
+        //pour insertion dans la liste de course de l'user
+        viewHolder.ajout.setEnabled(! prod.getQuantite().equals("Rupture de stock"));
+        viewHolder.id = prod.getID();
+        viewHolder.ajout.setTag(viewHolder);
         return convertView;
+    }
+
+    //pour insertion dans la liste de course de l'user
+    public void onClick(View v) {
+
+        mHandler = new Bdd(this.getContext());
+        listeCourse = mHandler.getWritableDatabase();
+
+        //récupérer valeur du produit
+        ProdsViewHolder holder = ((ProdsViewHolder) v.getTag());
+
+        //insérer ces valeurs dans la base
+        ContentValues cv = new  ContentValues();
+        cv.put("id_liste",2); //numListe
+        cv.put("id_produit",holder.id); //numProduit
+        //cv.put("id_produit",1); //numProduit
+        cv.put("id_magasin",1); //numMagasin
+
+        //TextView quantiteText = holder.quantite;
+        //cv.put("quantite",Integer.valueOf(quantiteText.getText().toString())); //quantite   que veut l'utilisateur
+        cv.put("quantite",1);
+        cv.put("achete",0); //achete
+        listeCourse.insert("Listes", null, cv);
+        ////final String Insert_Liste_User="INSERT INTO Listes (id_liste,id_produit,id_magasin,quantite,achete) VALUES(1,1,1,1,0)";
     }
 
     private class ProdsViewHolder{
@@ -75,6 +113,9 @@ public class ProdAdapter extends ArrayAdapter<Prods> {
         public TextView quantite;
         public TextView promotion;
         public TextView categorie;
+
+        //pour insertion dans la liste de course de l'user
         public Button ajout;
+        public int id;
     }
 }
