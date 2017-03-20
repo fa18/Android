@@ -94,7 +94,7 @@ public class ProdAdapter extends ArrayAdapter<Prods> implements View.OnClickList
         //insérer ces valeurs dans la base
         ContentValues cv = new  ContentValues();
         //cv.put("id_liste",3); //numListe
-        cv.put("id_liste",holder.idListe+1); //numListe
+        cv.put("id_liste",holder.idListe); //numListe
         //problème : ajout dans 1 nouvelle liste
 
         cv.put("id_produit",holder.numProduit); //numProduit

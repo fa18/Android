@@ -106,7 +106,7 @@ public class Bdd extends SQLiteOpenHelper {
     final String Insert_Liste_User="INSERT INTO Listes (id_liste,id_produit,id_magasin,quantite,achete) VALUES(1,1,1,1,0)";
 
 
-    private static final int VERSION = 34;
+    private static final int VERSION = 36;
 
     public Bdd(Context context) {
         super(context, "listeCourse.db", null, VERSION);
@@ -133,7 +133,7 @@ public class Bdd extends SQLiteOpenHelper {
         db.execSQL(Insert_Vend_perceuse);
         db.execSQL(Insert_Leclerc);
         db.execSQL(Insert_Vend_clou);
-        db.execSQL(Insert_Liste_User);
+        //db.execSQL(Insert_Liste_User);
 
 
     }
