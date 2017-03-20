@@ -96,11 +96,16 @@ public class ProdAdapter extends ArrayAdapter<Prods> implements View.OnClickList
         ProdsViewHolder holder = ((ProdsViewHolder) v.getTag());
 
        // On verifie que le produit qu'on ajoute n'est pas déjà présent dans la liste, sinon on insere pas dans la base mais on augmente la quantite commandee
-       String verifReq ="SELECT quantite FROM Listes where id_produit="+holder.numProduit+" and id_magasin="+holder.idMagasin;
-        Cursor mCursor = listeCourse.rawQuery(verifReq,null);
-        mCursor.moveToFirst();
-        int count= mCursor.getInt(0);
+        String verifProduitPresent ="SELECT count(*) FROM Listes where id_produit="+holder.numProduit+" and id_magasin="+holder.idMagasin;
+        Cursor mCurs = listeCourse.rawQuery(verifProduitPresent,null);
+        mCurs.moveToFirst();
+        int count= mCurs.getInt(0);
         Log.i("Nb ligne",count+"");
+        mCurs.close();
+
+
+
+
         if(count == 0) {
 
             //insérer ces valeurs dans la base
@@ -123,6 +128,10 @@ public class ProdAdapter extends ArrayAdapter<Prods> implements View.OnClickList
 
 
        }else {
+            String verifReq ="SELECT quantite FROM Listes where id_produit="+holder.numProduit+" and id_magasin="+holder.idMagasin;
+            Cursor mCursor = listeCourse.rawQuery(verifReq,null);
+            mCursor.moveToFirst();
+
             ContentValues cv = new ContentValues();
             cv.put("quantite", mCursor.getInt(0)+1);
             listeCourse.update("Listes",cv,"id_produit=? and id_magasin=?",new String[]{Integer.toString(holder.numProduit), Integer.toString(holder.idMagasin)});
