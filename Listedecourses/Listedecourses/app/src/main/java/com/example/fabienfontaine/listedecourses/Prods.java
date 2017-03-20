@@ -20,6 +20,15 @@ public class Prods {
 
 
 
+    int quantiteCommandee=1;
+    public int getQuantiteCommandee() {
+        return quantiteCommandee;
+    }
+
+    public void setQuantiteCommandee(int quantiteCommandee) {
+        this.quantiteCommandee = quantiteCommandee;
+    }
+
     public Prods() {
 
     }

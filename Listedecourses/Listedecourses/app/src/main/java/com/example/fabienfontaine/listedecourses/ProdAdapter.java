@@ -2,8 +2,10 @@ package com.example.fabienfontaine.listedecourses;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.ColorDrawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +17,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import static com.example.fabienfontaine.listedecourses.R.id.quantite;
+import static com.example.fabienfontaine.listedecourses.R.id.quantiteCommandee;
 
 //vue
 public class ProdAdapter extends ArrayAdapter<Prods> implements View.OnClickListener {
@@ -49,6 +52,8 @@ public class ProdAdapter extends ArrayAdapter<Prods> implements View.OnClickList
             viewHolder.promotion= (TextView) convertView.findViewById(R.id.promotion);
             viewHolder.categorie= (TextView) convertView.findViewById(R.id.categorie);
 
+            //viewHolder.quantiteCommandee= (TextView) convertView.findViewById(R.id.quantiteCommandee);
+
             //pour insertion dans la liste de course de l'user
             viewHolder.ajout = (Button) convertView.findViewById(R.id.ajouter_produit);
             viewHolder.ajout.setOnClickListener(this);
@@ -70,6 +75,7 @@ public class ProdAdapter extends ArrayAdapter<Prods> implements View.OnClickList
         viewHolder.quantite.setText(prod.getQuantite());
         viewHolder.promotion.setText(prod.getPromotion());
         viewHolder.categorie.setText(prod.getCategorie());
+       // viewHolder.quantiteCommandee.setText(prod.getQuantiteCommandee());
 
         //pour insertion dans la liste de course de l'user
         viewHolder.ajout.setEnabled(! prod.getQuantite().equals("Rupture de stock"));
@@ -84,29 +90,43 @@ public class ProdAdapter extends ArrayAdapter<Prods> implements View.OnClickList
 
     //pour insertion dans la liste de course de l'user
     public void onClick(View v) {
-
         mHandler = new Bdd(this.getContext());
         listeCourse = mHandler.getWritableDatabase();
 
-        //récupérer valeur du produit
-        ProdsViewHolder holder = ((ProdsViewHolder) v.getTag());
+       // On verifie que le produit qu'on ajoute n'est pas déjà présent dans la liste, sinon on insere pas dans la base mais on augmente la quantite commandee
+       /* String verifReq ="SELECT COUNT(*) FROM Listes where id_produit="+holder.numProduit+" and id_magasin="+holder.idMagasin;
+        Cursor mCursor = listeCourse.rawQuery(verifReq,null);
+        mCursor.moveToFirst();
+        int count= mCursor.getInt(0);
+        Log.i("Nb ligne",count+"");
+        if(count == 0) {
+        */
+            //
 
-        //insérer ces valeurs dans la base
-        ContentValues cv = new  ContentValues();
-        //cv.put("id_liste",3); //numListe
-        cv.put("id_liste",holder.idListe); //numListe
-        //problème : ajout dans 1 nouvelle liste
 
-        cv.put("id_produit",holder.numProduit); //numProduit
-        //cv.put("id_produit",1); //numProduit
-        cv.put("id_magasin",holder.idMagasin); //numMagasin
+            //récupérer valeur du produit
+            ProdsViewHolder holder = ((ProdsViewHolder) v.getTag());
 
-        //TextView quantiteText = holder.quantite; //valeur de l'id du xml
-        //cv.put("quantite",Integer.valueOf(quantiteText.getText().toString())); //quantite   que veut l'utilisateur
-        cv.put("quantite",1);
-        cv.put("achete",0); //achete
-        listeCourse.insert("Listes", null, cv);
-        ////final String Insert_Liste_User="INSERT INTO Listes (id_liste,id_produit,id_magasin,quantite,achete) VALUES(1,1,1,1,0)";
+            //insérer ces valeurs dans la base
+            ContentValues cv = new ContentValues();
+            //cv.put("id_liste",3); //numListe
+            cv.put("id_liste", holder.idListe); //numListe
+            //problème : ajout dans 1 nouvelle liste
+
+            cv.put("id_produit", holder.numProduit); //numProduit
+            //cv.put("id_produit",1); //numProduit
+            cv.put("id_magasin", holder.idMagasin); //numMagasin
+
+            //TextView quantiteText = holder.quantite; //valeur de l'id du xml
+            //cv.put("quantite",Integer.valueOf(quantiteText.getText().toString())); //quantite   que veut l'utilisateur
+            cv.put("quantite", 1);
+
+            cv.put("achete", 0); //achete
+            listeCourse.insert("Listes", null, cv);
+            ////final String Insert_Liste_User="INSERT INTO Listes (id_liste,id_produit,id_magasin,quantite,achete) VALUES(1,1,1,1,0)";
+
+
+       // }else quantiteCommandee.setQuantiteCommandee(mCursor.getInt(0)+1);;
     }
 
     private class ProdsViewHolder{
@@ -126,5 +146,8 @@ public class ProdAdapter extends ArrayAdapter<Prods> implements View.OnClickList
         public int numProduit;
         public int idMagasin;
         public int idListe;
+
+        //public TextView quantiteCommandee;
+
     }
 }

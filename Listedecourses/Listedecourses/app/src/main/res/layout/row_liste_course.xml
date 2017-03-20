@@ -79,7 +79,7 @@
         android:layout_alignParentStart="true" />
 
     <TextView
-        android:text="quantite"
+        android:text="quantite disponible"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/quantite"
@@ -96,6 +96,13 @@
         android:layout_alignBottom="@+id/emplacement"
         android:layout_toEndOf="@+id/categorie" />
 
+    <TextView
+        android:text="quantite commandee"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/quantiteCommandee"
+        android:layout_below="@+id/quantite"
+        android:layout_toStartOf="@+id/promotion" />
 
 
 </RelativeLayout>
