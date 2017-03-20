@@ -52,6 +52,23 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.fabienfontaine.listedecourses.Accueil" />
         </activity>
+
+        <service
+            android:name=".IntentService"
+            android:exported="false" />
+        <service
+            android:name=".MyIntentService"
+            android:exported="false" />
+
+        <activity
+            android:name=".TestTimerActivity"
+            android:label="@string/title_activity_test_timer"
+            android:parentActivityName=".Accueil"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.fabienfontaine.listedecourses.Accueil" />
+        </activity>
     </application>
 
 </manifest>

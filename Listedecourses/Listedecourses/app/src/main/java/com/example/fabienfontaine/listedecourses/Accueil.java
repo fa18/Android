@@ -1,8 +1,5 @@
 package com.example.fabienfontaine.listedecourses;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -44,9 +41,6 @@ public class Accueil extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-
-
 
        getSupportFragmentManager().beginTransaction().add(R.id.content_accueil, new AccueilFragment()).addToBackStack(null).commit();
     }
@@ -111,8 +105,9 @@ public class Accueil extends AppCompatActivity
 
         } else if (id == R.id.nav_historique) {
 
-        } else if (id == R.id.nav_share) {
-
+        } else if (id == R.id.nav_testService) {
+            Intent intent = new Intent(this, TestTimerActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_send) {
             startActivity(new Intent(this, ConnexionHttp.class));
         }
