@@ -45,7 +45,7 @@
             <item
                 android:id="@+id/nav_testService"
                 android:icon="@drawable/ic_menu_share"
-                android:title="TestService" />
+                android:title="Temps attente en caisse" />
             <item
                 android:id="@+id/nav_send"
                 android:icon="@drawable/ic_menu_send"

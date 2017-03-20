@@ -30,5 +30,28 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         app:srcCompat="@android:drawable/ic_dialog_email" />
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
+    <Button
+        android:text=" Test du timer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="133dp"
+        android:layout_marginTop="169dp"
+        android:id="@+id/buttonTestTimer" />
+
+    <Button
+        android:text="Liaison"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:id="@+id/buttonLiaison"
+        android:layout_alignEnd="@+id/buttonTestTimer"
+        android:layout_alignStart="@+id/buttonTestTimer" />
+
+</RelativeLayout>
 </android.support.design.widget.CoordinatorLayout>
