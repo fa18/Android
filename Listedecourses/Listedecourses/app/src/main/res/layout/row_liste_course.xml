@@ -97,12 +97,22 @@
         android:layout_toEndOf="@+id/categorie" />
 
     <TextView
+        android:text="Quantité prévu d'achat :"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/quantite"
+        android:id="@+id/textView3"
+        android:layout_alignParentStart="true" />
+
+    <TextView
         android:text="quantite commandee"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/quantiteCommandee"
-        android:layout_below="@+id/quantite"
-        android:layout_toStartOf="@+id/promotion" />
+        android:layout_alignBaseline="@+id/textView3"
+        android:layout_alignBottom="@+id/textView3"
+        android:layout_toEndOf="@+id/textView3"
+        android:layout_marginStart="22dp" />
 
 
 </RelativeLayout>

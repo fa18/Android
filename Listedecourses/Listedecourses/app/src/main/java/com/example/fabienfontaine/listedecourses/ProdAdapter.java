@@ -92,21 +92,16 @@ public class ProdAdapter extends ArrayAdapter<Prods> implements View.OnClickList
     public void onClick(View v) {
         mHandler = new Bdd(this.getContext());
         listeCourse = mHandler.getWritableDatabase();
+        //récupérer valeur du produit
         ProdsViewHolder holder = ((ProdsViewHolder) v.getTag());
 
        // On verifie que le produit qu'on ajoute n'est pas déjà présent dans la liste, sinon on insere pas dans la base mais on augmente la quantite commandee
-       String verifReq ="SELECT COUNT(*) FROM Listes where id_produit="+holder.numProduit+" and id_magasin="+holder.idMagasin;
+       String verifReq ="SELECT quantite FROM Listes where id_produit="+holder.numProduit+" and id_magasin="+holder.idMagasin;
         Cursor mCursor = listeCourse.rawQuery(verifReq,null);
         mCursor.moveToFirst();
         int count= mCursor.getInt(0);
         Log.i("Nb ligne",count+"");
         if(count == 0) {
-
-            //
-
-
-            //récupérer valeur du produit
-
 
             //insérer ces valeurs dans la base
             ContentValues cv = new ContentValues();
