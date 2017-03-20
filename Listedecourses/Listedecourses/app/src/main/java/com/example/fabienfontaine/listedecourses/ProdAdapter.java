@@ -52,7 +52,7 @@ public class ProdAdapter extends ArrayAdapter<Prods> implements View.OnClickList
             viewHolder.promotion= (TextView) convertView.findViewById(R.id.promotion);
             viewHolder.categorie= (TextView) convertView.findViewById(R.id.categorie);
 
-            //viewHolder.quantiteCommandee= (TextView) convertView.findViewById(R.id.quantiteCommandee);
+
 
             //pour insertion dans la liste de course de l'user
             viewHolder.ajout = (Button) convertView.findViewById(R.id.ajouter_produit);
@@ -75,7 +75,7 @@ public class ProdAdapter extends ArrayAdapter<Prods> implements View.OnClickList
         viewHolder.quantite.setText(prod.getQuantite());
         viewHolder.promotion.setText(prod.getPromotion());
         viewHolder.categorie.setText(prod.getCategorie());
-       // viewHolder.quantiteCommandee.setText(prod.getQuantiteCommandee());
+
 
         //pour insertion dans la liste de course de l'user
         viewHolder.ajout.setEnabled(! prod.getQuantite().equals("Rupture de stock"));
@@ -146,8 +146,6 @@ public class ProdAdapter extends ArrayAdapter<Prods> implements View.OnClickList
         public int numProduit;
         public int idMagasin;
         public int idListe;
-
-        //public TextView quantiteCommandee;
-
+        
     }
 }
