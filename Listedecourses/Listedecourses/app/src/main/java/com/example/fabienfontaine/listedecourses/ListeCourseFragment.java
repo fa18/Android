@@ -35,18 +35,18 @@ public class ListeCourseFragment extends Fragment {
         View vue = inflater.inflate(R.layout.content_liste_course, container, false);
 
         pUserListView = (ListView) vue.findViewById(R.id.UserlistView);
-        
 
+        return vue;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         Bdd obj = new Bdd(getContext());
         List<Prods> prods = obj.userProds();
 
         ListeCourseAdaptater adapter = new ListeCourseAdaptater(getContext(), prods);
 
-       pUserListView.setAdapter(adapter);
-
-
-
-        return vue;
+        pUserListView.setAdapter(adapter);
     }
-
 }

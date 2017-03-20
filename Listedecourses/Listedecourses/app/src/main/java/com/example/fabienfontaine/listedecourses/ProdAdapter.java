@@ -92,20 +92,21 @@ public class ProdAdapter extends ArrayAdapter<Prods> implements View.OnClickList
     public void onClick(View v) {
         mHandler = new Bdd(this.getContext());
         listeCourse = mHandler.getWritableDatabase();
+        ProdsViewHolder holder = ((ProdsViewHolder) v.getTag());
 
        // On verifie que le produit qu'on ajoute n'est pas déjà présent dans la liste, sinon on insere pas dans la base mais on augmente la quantite commandee
-       /* String verifReq ="SELECT COUNT(*) FROM Listes where id_produit="+holder.numProduit+" and id_magasin="+holder.idMagasin;
+       String verifReq ="SELECT COUNT(*) FROM Listes where id_produit="+holder.numProduit+" and id_magasin="+holder.idMagasin;
         Cursor mCursor = listeCourse.rawQuery(verifReq,null);
         mCursor.moveToFirst();
         int count= mCursor.getInt(0);
         Log.i("Nb ligne",count+"");
         if(count == 0) {
-        */
+
             //
 
 
             //récupérer valeur du produit
-            ProdsViewHolder holder = ((ProdsViewHolder) v.getTag());
+
 
             //insérer ces valeurs dans la base
             ContentValues cv = new ContentValues();
@@ -126,7 +127,11 @@ public class ProdAdapter extends ArrayAdapter<Prods> implements View.OnClickList
             ////final String Insert_Liste_User="INSERT INTO Listes (id_liste,id_produit,id_magasin,quantite,achete) VALUES(1,1,1,1,0)";
 
 
-       // }else quantiteCommandee.setQuantiteCommandee(mCursor.getInt(0)+1);;
+       }else {
+            ContentValues cv = new ContentValues();
+            cv.put("quantite", mCursor.getInt(0)+1);
+            listeCourse.update("Listes",cv,"id_produit=? and id_magasin=?",new String[]{Integer.toString(holder.numProduit), Integer.toString(holder.idMagasin)});
+        };
     }
 
     private class ProdsViewHolder{

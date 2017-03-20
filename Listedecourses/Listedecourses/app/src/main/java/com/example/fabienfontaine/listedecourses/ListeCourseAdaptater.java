@@ -40,7 +40,7 @@ public class ListeCourseAdaptater extends ArrayAdapter<Prods> {
             viewHolder.promotion= (TextView) convertView.findViewById(R.id.promotion);
             viewHolder.categorie= (TextView) convertView.findViewById(R.id.categorie);
 
-            //viewHolder.quantiteCommandee= (TextView) convertView.findViewById(R.id.quantiteCommandee);
+            viewHolder.quantiteCommandee= (TextView) convertView.findViewById(R.id.quantiteCommandee);
 
             convertView.setTag(viewHolder);
         }
@@ -60,7 +60,7 @@ public class ListeCourseAdaptater extends ArrayAdapter<Prods> {
         viewHolder.promotion.setText(prod.getPromotion());
         viewHolder.categorie.setText(prod.getCategorie());
 
-        //viewHolder.quantiteCommandee.setText(prod.getQuantiteCommandee());
+        viewHolder.quantiteCommandee.setText(""+prod.getQuantiteCommandee());
 
         return convertView;
     }
@@ -77,6 +77,6 @@ public class ListeCourseAdaptater extends ArrayAdapter<Prods> {
         public TextView promotion;
         public TextView categorie;
 
-        //public TextView quantiteCommandee;
+        public TextView quantiteCommandee;
     }
 }
